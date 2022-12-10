@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using Gisha.fpsjam.Game.InputManager;
+using Gisha.fpsjam.Game.LevelManager;
 using UnityEngine;
 using Zenject;
 
@@ -13,7 +14,6 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
 
         [Header("Raycast")] [SerializeField] private float raycastDst = 5f;
         [SerializeField] private float raycastRadius = 0.6f;
-        [SerializeField] private LayerMask whatIsPunchable;
 
         [Inject] private IInputService _inputService;
 
@@ -55,7 +55,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
         {
             var screenPointRay = _cam.ScreenPointToRay(Input.mousePosition);
             var ray = new Ray(transform.position, screenPointRay.direction);
-            var hits = Physics.SphereCastAll(ray, raycastRadius, raycastDst, whatIsPunchable);
+            var hits = Physics.SphereCastAll(ray, raycastRadius, raycastDst);
 
             Debug.DrawRay(ray.origin, ray.direction * raycastDst, Color.red, 0.5f);
             foreach (var hitInfo in hits)
@@ -63,10 +63,10 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
                 if (hitInfo.collider == null)
                     continue;
 
-                if (!hitInfo.collider.TryGetComponent(out Rigidbody rb))
+                if (!hitInfo.collider.TryGetComponent(out IPunchable punchable))
                     continue;
 
-                rb.AddForce(screenPointRay.direction.normalized * punchForce, ForceMode.Impulse);
+                punchable.OnPunch(screenPointRay.direction.normalized);
             }
         }
 
