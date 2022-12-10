@@ -18,23 +18,11 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
         [SerializeField] private float maxSlopeAngle = 35f;
         [SerializeField] private float gravityForce = 30f;
 
-        [Header("Crouch & Slide")] 
-        [SerializeField] private Vector3 crouchScale = new Vector3(1, 0.5f, 1);
-
-        [SerializeField] private float slideForce = 400;
-        [SerializeField] private float slideCounterMovement = 0.2f;
-        [SerializeField] private float slideTimeInSeconds = 1f;
-        [SerializeField] private float slideCooldown = 0.5f;
-        [SerializeField] private float coyoteSlideTimeInSeconds = 0.5f;
-
         [Header("Jumping")] 
         [SerializeField] private float jumpCooldown = 0.25f;
         [SerializeField] private float jumpForce = 550f;
         
         public float JumpForce => jumpForce;
-        public float SlideForce => slideForce;
-        public float SlideCounterMovement => slideCounterMovement;
-        public Vector3 CrouchScale => crouchScale;
         public float MaxSlopeAngle => maxSlopeAngle;
         public float Threshold => threshold;
         public float CounterMovement => counterMovement;
@@ -44,11 +32,6 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
         public float SensMultiplier => sensMultiplier;
         public float Sensitivity => sensitivity;
         public float JumpCooldown => jumpCooldown;
-        
-        public float SlideTimeInSeconds => slideTimeInSeconds;
-        public float SlideCooldown => slideCooldown;
-        public float CoyoteSlideTimeInSeconds => coyoteSlideTimeInSeconds;
-
         public float GravityForce => gravityForce;
     }
 }

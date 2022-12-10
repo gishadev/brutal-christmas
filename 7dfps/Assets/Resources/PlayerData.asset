@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c200b3bea1f4237ba4bbfad08b4d55f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  sensitivity: 50
+  sensitivity: 5
   sensMultiplier: 1
   whatIsGround:
     serializedVersion: 2
@@ -22,6 +22,7 @@ MonoBehaviour:
   counterMovement: 0.175
   threshold: 0.01
   maxSlopeAngle: 35
+  gravityForce: 3000
   crouchScale: {x: 1, y: 0.5, z: 1}
   slideForce: 400
   slideCounterMovement: 0.2
@@ -30,17 +31,3 @@ MonoBehaviour:
   coyoteSlideTimeInSeconds: 0.5
   jumpCooldown: 0.25
   jumpForce: 550
-  wallMaxDistance: 1
-  minJumpHeight: 1
-  wallRunGravity: 1
-  wallJumpForce: 6
-  wallJumpDelay: 0.5
-  defaultFov: 60
-  wallRunFov: 70
-  wallRunFovSpeed: 20
-  wallRunCamTilt: 10
-  wallRunCamTiltSpeed: 10
-  ledgeCheckRadius: 0.7
-  ledgeCheckDistance: 1.55
-  ledgeClimbSpeed: 3
-  ledgeCheckOffset: {x: 0, y: 0, z: 0}
