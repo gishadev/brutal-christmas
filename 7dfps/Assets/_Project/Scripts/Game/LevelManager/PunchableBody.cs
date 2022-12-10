@@ -1,4 +1,5 @@
 ﻿using System;
+using Gisha.fpsjam.Game.Core;
 using UnityEngine;
 
 namespace Gisha.fpsjam.Game.LevelManager
@@ -7,7 +8,7 @@ namespace Gisha.fpsjam.Game.LevelManager
     public class PunchableBody : MonoBehaviour, IPunchable
     {
         [SerializeField] private float punchForce = 35f;
-        
+
         private Rigidbody _rb;
 
         private void Awake()
@@ -15,9 +16,9 @@ namespace Gisha.fpsjam.Game.LevelManager
             _rb = GetComponent<Rigidbody>();
         }
 
-        public void OnPunch(Vector3 punchDir)
+        public void OnPunch(Vector3 punchDir, float forceMagnitude)
         {
-            _rb.AddForce(punchDir * punchForce, ForceMode.Impulse);
+            _rb.AddForce(punchDir * forceMagnitude, ForceMode.Impulse);
         }
     }
 }

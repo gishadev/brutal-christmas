@@ -1,6 +1,6 @@
 ﻿using System.Collections;
+using Gisha.fpsjam.Game.Core;
 using Gisha.fpsjam.Game.InputManager;
-using Gisha.fpsjam.Game.LevelManager;
 using UnityEngine;
 using Zenject;
 
@@ -15,10 +15,18 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
         [Header("Raycast")] [SerializeField] private float raycastDst = 5f;
         [SerializeField] private float raycastRadius = 0.6f;
 
-        [Inject] private IInputService _inputService;
+        private IInputService _inputService;
+        private PlayerData _playerData;
 
         private Camera _cam;
         private bool _isPunching;
+
+        [Inject]
+        private void Construct(IInputService inputService, PlayerData playerData)
+        {
+            _inputService = inputService;
+            _playerData = playerData;
+        }
 
         private void Awake()
         {
@@ -66,7 +74,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
                 if (!hitInfo.collider.TryGetComponent(out IPunchable punchable))
                     continue;
 
-                punchable.OnPunch(screenPointRay.direction.normalized);
+                punchable.OnPunch(screenPointRay.direction.normalized, _playerData.LegPunchForce);
             }
         }
 

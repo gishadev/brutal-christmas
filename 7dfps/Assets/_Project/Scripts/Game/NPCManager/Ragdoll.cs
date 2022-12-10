@@ -29,11 +29,18 @@ namespace Gisha.fpsjam.Game.NPCManager
 
             _animator.enabled = true;
         }
+
+        public void AddForce(Vector3 force, ForceMode forceMode = ForceMode.Force)
+        {
+            foreach (var rb in _rbs) 
+                rb.AddForce(force, forceMode);
+        }
     }
 
     public interface IRagdoll
     {
         public void Enable();
         public void Disable();
+        public void AddForce(Vector3 force, ForceMode forceMode = ForceMode.Force);
     }
 }

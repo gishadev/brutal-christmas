@@ -22,6 +22,11 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
         [SerializeField] private float jumpCooldown = 0.25f;
         [SerializeField] private float jumpForce = 550f;
         
+        [Header("Punching")] [SerializeField]
+        private float legPunchForce = 35f;
+
+        
+        
         public float JumpForce => jumpForce;
         public float MaxSlopeAngle => maxSlopeAngle;
         public float Threshold => threshold;
@@ -33,5 +38,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
         public float Sensitivity => sensitivity;
         public float JumpCooldown => jumpCooldown;
         public float GravityForce => gravityForce;
+
+        public float LegPunchForce => legPunchForce;
     }
 }
