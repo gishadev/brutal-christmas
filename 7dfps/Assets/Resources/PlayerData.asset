@@ -12,22 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c200b3bea1f4237ba4bbfad08b4d55f, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  sensitivity: 5
+  sensitivity: 50
   sensMultiplier: 1
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  moveSpeed: 4500
-  maxSpeed: 20
+  moveSpeed: 3500
+  maxSpeed: 12
   counterMovement: 0.175
   threshold: 0.01
   maxSlopeAngle: 35
   gravityForce: 3000
-  crouchScale: {x: 1, y: 0.5, z: 1}
-  slideForce: 400
-  slideCounterMovement: 0.2
-  slideTimeInSeconds: 1
-  slideCooldown: 0.5
-  coyoteSlideTimeInSeconds: 0.5
-  jumpCooldown: 0.25
-  jumpForce: 550
+  jumpCooldown: 0.1
+  jumpForce: 600
