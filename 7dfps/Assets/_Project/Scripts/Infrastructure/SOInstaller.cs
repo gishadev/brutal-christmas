@@ -1,4 +1,5 @@
-﻿using Gisha.fpsjam.Game.PlayerGameplay;
+﻿using Gisha.fpsjam.Game.NPCManager;
+using Gisha.fpsjam.Game.PlayerGameplay;
 using UnityEngine;
 using Zenject;
 
@@ -8,10 +9,11 @@ namespace Gisha.fpsjam.Infrastructure
     public class SOInstaller : ScriptableObjectInstaller<SOInstaller>
     {
         [SerializeField] private PlayerData playerData;
+        [SerializeField] private NPCData npcData;
 
         public override void InstallBindings()
         {
-            Container.BindInstances(playerData);
+            Container.BindInstances(playerData, npcData);
         }
     }
 }
