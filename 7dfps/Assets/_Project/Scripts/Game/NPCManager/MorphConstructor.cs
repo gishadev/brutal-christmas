@@ -17,11 +17,17 @@ namespace Gisha.fpsjam.Game.NPCManager
 
         public IMorph CreateRandomMorph(INPC npc)
         {
-            var randomPrefab = _npcData.Morphs[Random.Range(0, _npcData.Morphs.Length)];
-
             IMorph morph = npc.Morph;
+
+            for (int i = 0; i < npc.transform.childCount; i++)
+            {
+                if (npc.transform.GetChild(i).TryGetComponent(out morph))
+                    break;
+            }
+
             if (morph == null)
             {
+                var randomPrefab = _npcData.Morphs[Random.Range(0, _npcData.Morphs.Length)];
                 var obj = _diContainer.InstantiatePrefab(randomPrefab);
                 obj.transform.SetParent(npc.transform);
             }

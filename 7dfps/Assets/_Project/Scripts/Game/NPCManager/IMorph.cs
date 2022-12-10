@@ -6,5 +6,7 @@ namespace Gisha.fpsjam.Game.NPCManager
     {
         GameObject gameObject { get; }
         Transform transform { get; }
+        
+        IRagdoll Ragdoll { get; }
     }
 }
