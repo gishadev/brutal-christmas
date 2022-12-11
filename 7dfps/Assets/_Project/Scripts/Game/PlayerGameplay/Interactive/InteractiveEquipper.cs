@@ -51,7 +51,6 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
                 if (!hitInfo.collider.TryGetComponent(out _potentialInteractive))
                     return;
 
-                Debug.Log($"Interactive detected!: {_potentialInteractive.gameObject.name}");
             }
         }
 
@@ -60,7 +59,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
             if (_potentialInteractive == null)
                 return;
 
-            _interactiveManager.EquipInteractive(_potentialInteractive);
+            _interactiveManager.TakeInteractive(_potentialInteractive);
         }
 
         private void OnDrawGizmos()

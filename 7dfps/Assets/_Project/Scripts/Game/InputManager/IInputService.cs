@@ -9,10 +9,12 @@ namespace Gisha.fpsjam.Game.InputManager
         bool IsJumping { get; }
         event Action LegPunchButtonDown;
         event Action EquipButtonDown;
+        event Action<int> NumberButtonDown;
+        event Action<float> MouseScroll;
         event Action JumpButtonDown;
         event Action JumpButtonUp;
-        event Action LMBButtonDown;
-        event Action RMBButtonDown;
+        event Action LMBDown;
+        event Action RMBDown;
         void Update();
     }
 }

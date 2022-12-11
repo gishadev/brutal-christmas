@@ -11,10 +11,15 @@ namespace Gisha.fpsjam.Game.InputManager
         public bool IsJumping { get; private set; }
         public event Action LegPunchButtonDown;
         public event Action EquipButtonDown;
+        public event Action<int> NumberButtonDown;
+        public event Action<float> MouseScroll;
         public event Action JumpButtonDown;
         public event Action JumpButtonUp;
-        public event Action LMBButtonDown;
-        public event Action RMBButtonDown;
+        public event Action LMBDown;
+        public event Action RMBDown;
+
+        private KeyCode[] _numberKeyCodes =
+            {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5};
 
         public void Update()
         {
@@ -30,7 +35,6 @@ namespace Gisha.fpsjam.Game.InputManager
 
             if (Input.GetKeyDown(KeyCode.F))
                 LegPunchButtonDown?.Invoke();
-
             if (Input.GetKeyDown(KeyCode.E))
                 EquipButtonDown?.Invoke();
 
@@ -38,14 +42,21 @@ namespace Gisha.fpsjam.Game.InputManager
                 JumpButtonDown?.Invoke();
             if (Input.GetKeyUp(KeyCode.Space))
                 JumpButtonUp?.Invoke();
+
+            for (var i = 0; i < _numberKeyCodes.Length; i++)
+                if (Input.GetKeyDown(_numberKeyCodes[i]))
+                    NumberButtonDown?.Invoke(i);
         }
 
         private void HandleMouseInput()
         {
             if (Input.GetMouseButtonDown(0))
-                LMBButtonDown?.Invoke();
+                LMBDown?.Invoke();
             if (Input.GetMouseButtonDown(1))
-                RMBButtonDown?.Invoke();
+                RMBDown?.Invoke();
+
+            if (Mathf.Abs(Input.mouseScrollDelta.y) > 0f)
+                MouseScroll?.Invoke(Input.mouseScrollDelta.y);
         }
     }
 }

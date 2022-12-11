@@ -2,6 +2,7 @@
 {
     public interface IInteractiveManager
     {
-        void EquipInteractive(IInteractive interactive);
+        IInteractive CurrentInteractive { get; }
+        void TakeInteractive(IInteractive interactive);
     }
 }
