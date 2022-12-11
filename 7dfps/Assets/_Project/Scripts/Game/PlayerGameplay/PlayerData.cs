@@ -24,7 +24,9 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
         
         [Header("Punching")] [SerializeField]
         private float legPunchForce = 35f;
-
+        [SerializeField] private float punchDelay = 1.1f;
+        [SerializeField] private float punchRaycastDst = 2f;
+        [SerializeField] private float punchRaycastRadius = 0.6f;
         
         
         public float JumpForce => jumpForce;
@@ -40,5 +42,11 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
         public float GravityForce => gravityForce;
 
         public float LegPunchForce => legPunchForce;
+
+        public float PunchDelay => punchDelay;
+
+        public float PunchRaycastDst => punchRaycastDst;
+
+        public float PunchRaycastRadius => punchRaycastRadius;
     }
 }

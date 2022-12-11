@@ -8,12 +8,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
 {
     public class LegPunchHandler : MonoBehaviour
     {
-        [Header("General")] [SerializeField] private float punchDelay = 1.5f;
-        [SerializeField] private float punchForce = 25f;
         [SerializeField] private GameObject leg;
-
-        [Header("Raycast")] [SerializeField] private float raycastDst = 5f;
-        [SerializeField] private float raycastRadius = 0.6f;
 
         private IInputService _inputService;
         private PlayerData _playerData;
@@ -55,7 +50,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
             PunchRaycast();
             PunchAnimation();
 
-            yield return new WaitForSeconds(punchDelay);
+            yield return new WaitForSeconds(_playerData.PunchDelay);
             _isPunching = false;
         }
 
@@ -63,9 +58,9 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
         {
             var screenPointRay = _cam.ScreenPointToRay(Input.mousePosition);
             var ray = new Ray(_cam.transform.position, screenPointRay.direction);
-            var hits = Physics.SphereCastAll(ray, raycastRadius, raycastDst);
+            var hits = Physics.SphereCastAll(ray, _playerData.PunchRaycastRadius, _playerData.PunchRaycastDst);
 
-            Debug.DrawRay(ray.origin, ray.direction * raycastDst, Color.red, 0.5f);
+            Debug.DrawRay(ray.origin, ray.direction * _playerData.PunchRaycastDst, Color.red, 0.5f);
             foreach (var hitInfo in hits)
             {
                 if (hitInfo.collider == null)

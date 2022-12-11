@@ -1,4 +1,5 @@
-﻿using Gisha.fpsjam.Game.Core;
+﻿using System;
+using Gisha.fpsjam.Game.Core;
 using UnityEngine;
 using Zenject;
 
@@ -9,6 +10,7 @@ namespace Gisha.fpsjam.Game.NPCManager
         [Inject] private IMorphConstructor _morphConstructor;
 
         public IMorph Morph { get; private set; }
+        public event Action Died;
 
         private Collider _collider;
 
@@ -28,6 +30,8 @@ namespace Gisha.fpsjam.Game.NPCManager
             Morph.Ragdoll.Enable();
             Morph.Ragdoll.AddForce(punchDir * forceMagnitude, ForceMode.Impulse);
             _collider.enabled = false;
+
+            Died?.Invoke();
         }
     }
 }

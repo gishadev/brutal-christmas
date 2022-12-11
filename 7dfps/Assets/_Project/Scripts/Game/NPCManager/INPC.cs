@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Gisha.fpsjam.Game.NPCManager
 {
@@ -7,5 +8,6 @@ namespace Gisha.fpsjam.Game.NPCManager
         GameObject gameObject { get; }
         Transform transform { get; }
         IMorph Morph { get; }
+        event Action Died;
     }
 }
