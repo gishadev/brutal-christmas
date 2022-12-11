@@ -10,8 +10,11 @@ namespace Gisha.fpsjam.Game.NPCManager
 
         public IMorph Morph { get; private set; }
 
+        private Collider _collider;
+
         private void Awake()
         {
+            _collider = GetComponent<Collider>();
             Init();
         }
 
@@ -24,6 +27,7 @@ namespace Gisha.fpsjam.Game.NPCManager
         {
             Morph.Ragdoll.Enable();
             Morph.Ragdoll.AddForce(punchDir * forceMagnitude, ForceMode.Impulse);
+            _collider.enabled = false;
         }
     }
 }
