@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gisha.fpsjam.Game.LevelManager;
+using UnityEngine;
 
 namespace Gisha.fpsjam.Game.NPCManager
 {
@@ -20,7 +21,7 @@ namespace Gisha.fpsjam.Game.NPCManager
         public void OnEnter()
         {
             var randPoint = _npcMovement.PointsOfInterest[Random.Range(0, _npcMovement.PointsOfInterest.Length)];
-            Destination = randPoint.position;
+            Destination = randPoint.transform.position;
             _npcMovement.MoveToDestination(Destination);
         }
 

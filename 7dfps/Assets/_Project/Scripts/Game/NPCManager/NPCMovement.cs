@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Gisha.fpsjam.Game.LevelManager;
+using Gisha.fpsjam.Utilities;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace Gisha.fpsjam.Game.NPCManager
@@ -6,17 +8,18 @@ namespace Gisha.fpsjam.Game.NPCManager
     [RequireComponent(typeof(NavMeshAgent), typeof(INPC))]
     public class NPCMovement : MonoBehaviour, INPCMovement
     {
-        [SerializeField] private Transform[] pointsOfInterest;
-        
         private NavMeshAgent _agent;
         private INPC _npc;
 
-        public Transform[] PointsOfInterest => pointsOfInterest;
-        
+        public POI[] PointsOfInterest => _pointsOfInterest;
+
+        private POI[] _pointsOfInterest;
+
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
             _npc = GetComponent<INPC>();
+            _pointsOfInterest = FindObjectsOfType<POI>();
         }
 
         private void Start()
@@ -24,7 +27,7 @@ namespace Gisha.fpsjam.Game.NPCManager
             _agent.enabled = true;
             _npc.Died += OnDied;
         }
-        
+
         private void OnDisable()
         {
             _npc.Died -= OnDied;
@@ -34,7 +37,7 @@ namespace Gisha.fpsjam.Game.NPCManager
         {
             _agent.SetDestination(destination);
         }
-        
+
         private void OnDied()
         {
             _agent.isStopped = true;

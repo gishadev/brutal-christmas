@@ -30,6 +30,7 @@ namespace Gisha.fpsjam.Game.NPCManager
                 var randomPrefab = _npcData.Morphs[Random.Range(0, _npcData.Morphs.Length)];
                 var obj = _diContainer.InstantiatePrefab(randomPrefab);
                 obj.transform.SetParent(npc.transform);
+                obj.TryGetComponent(out morph);
             }
 
             return morph;

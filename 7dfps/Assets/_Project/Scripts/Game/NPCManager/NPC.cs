@@ -20,13 +20,17 @@ namespace Gisha.fpsjam.Game.NPCManager
 
         private void Awake()
         {
+            Init();
             _collider = GetComponent<Collider>();
             Movement = GetComponent<INPCMovement>();
-            Init();
+        }
+
+        private void Start()
+        {
             InitStateMachine();
         }
 
-        public void Init()
+        private void Init()
         {
             Morph = _morphConstructor.CreateRandomMorph(this);
         }
