@@ -62,7 +62,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
         private void PunchRaycast()
         {
             var screenPointRay = _cam.ScreenPointToRay(Input.mousePosition);
-            var ray = new Ray(transform.position, screenPointRay.direction);
+            var ray = new Ray(_cam.transform.position, screenPointRay.direction);
             var hits = Physics.SphereCastAll(ray, raycastRadius, raycastDst);
 
             Debug.DrawRay(ray.origin, ray.direction * raycastDst, Color.red, 0.5f);

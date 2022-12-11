@@ -10,6 +10,7 @@ namespace Gisha.fpsjam.Game.InputManager
 
         public bool IsJumping { get; private set; }
         public event Action LegPunchButtonDown;
+        public event Action EquipButtonDown;
         public event Action JumpButtonDown;
         public event Action JumpButtonUp;
         public event Action LMBButtonDown;
@@ -29,6 +30,9 @@ namespace Gisha.fpsjam.Game.InputManager
 
             if (Input.GetKeyDown(KeyCode.F))
                 LegPunchButtonDown?.Invoke();
+
+            if (Input.GetKeyDown(KeyCode.E))
+                EquipButtonDown?.Invoke();
 
             if (Input.GetKeyDown(KeyCode.Space))
                 JumpButtonDown?.Invoke();
