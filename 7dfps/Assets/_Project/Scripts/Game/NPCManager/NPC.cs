@@ -5,19 +5,25 @@ using Zenject;
 
 namespace Gisha.fpsjam.Game.NPCManager
 {
-    public class NPC : MonoBehaviour, INPC, IPunchable
+    public abstract class NPC : MonoBehaviour, INPC, IPunchable
     {
         [Inject] private IMorphConstructor _morphConstructor;
 
         public IMorph Morph { get; private set; }
+        public INPCMovement Movement { get; private set; }
         public event Action Died;
+
+        protected StateMachine _stateMachine;
+        protected IState _startState;
 
         private Collider _collider;
 
         private void Awake()
         {
             _collider = GetComponent<Collider>();
+            Movement = GetComponent<INPCMovement>();
             Init();
+            InitStateMachine();
         }
 
         public void Init()
@@ -33,5 +39,7 @@ namespace Gisha.fpsjam.Game.NPCManager
 
             Died?.Invoke();
         }
+
+        public abstract void InitStateMachine();
     }
 }
