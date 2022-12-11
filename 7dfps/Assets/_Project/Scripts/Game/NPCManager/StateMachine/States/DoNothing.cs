@@ -6,6 +6,13 @@ namespace Gisha.fpsjam.Game.NPCManager
     {
         private float _startTime;
 
+        private Animator _animator;
+        
+        public DoNothing(Animator animator)
+        {
+            _animator = animator;
+        }
+        
         public void Tick()
         {
         }
@@ -13,6 +20,7 @@ namespace Gisha.fpsjam.Game.NPCManager
         public void OnEnter()
         {
             _startTime = Time.time;
+            _animator.SetBool("IsWalking", false);
         }
 
         public void OnExit()

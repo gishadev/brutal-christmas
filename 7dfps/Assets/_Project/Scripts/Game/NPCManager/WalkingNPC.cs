@@ -12,18 +12,19 @@ namespace Gisha.fpsjam.Game.NPCManager
         public override void InitStateMachine()
         {
             _stateMachine = new StateMachine();
+            var animator = GetComponentInChildren<Animator>();
 
-            var idle = new DoNothing();
-            var randomWalk = new WalkToRandomPOI(Movement);
-            
+            var idle = new DoNothing(animator);
+            var randomWalk = new WalkToRandomPOI(Movement, animator);
+
             At(idle, randomWalk, DelayFinished);
             At(randomWalk, idle, RandomStop);
             At(randomWalk, randomWalk, DestinationSucceeded);
-            
+
             _stateMachine.SetState(randomWalk);
             _startState = randomWalk;
 
-            bool DestinationSucceeded() => (transform.position - randomWalk.Destination).sqrMagnitude < 5f;
+            bool DestinationSucceeded() => (transform.position - randomWalk.Destination).sqrMagnitude < 1f;
             bool RandomStop() => DestinationSucceeded() && Random.Range(0, 100f) < chanceOfStopping;
             bool DelayFinished() => idle.GetTime() > afterStopDelay;
 
