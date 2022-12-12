@@ -1,46 +1,23 @@
-﻿using System;
-using Gisha.fpsjam.Game.InputManager;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
-using Object = UnityEngine.Object;
 
 namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
 {
-    public class InteractiveManager : IInteractiveManager, IInitializable, IDisposable
+    public class InteractiveManager : IInteractiveManager
     {
-        [Inject] private IInputService _inputService;
         [Inject] private IInventoryHandler _inventory;
 
-        public IInteractive CurrentInteractive => _inventory.EquippedSlot.Interactive;
+        public InteractiveData CurrentInteractive => _inventory.EquippedSlot.InteractiveData;
 
         private int _equppedIndex;
 
-        public void TakeInteractive(IInteractive interactive)
+        public void TakePickable(IPickable interactivePickable)
         {
             if (_inventory.IsFull())
                 return;
 
-            _inventory.TakeInteractive(interactive);
-            interactive.gameObject.SetActive(false);
-        }
-
-        public void Initialize()
-        {
-            _inputService.LMBDown += OnLMBDown;
-        }
-
-        public void Dispose()
-        {
-            _inputService.LMBDown -= OnLMBDown;
-        }
-
-        private void OnLMBDown()
-        {
-            if (CurrentInteractive == null || CurrentInteractive.Equals(null))
-                return;
-
-            CurrentInteractive.Use();
-            Object.Destroy(CurrentInteractive.gameObject);
+            _inventory.TakePickable(interactivePickable);
+            Object.Destroy(interactivePickable.gameObject);
         }
     }
 }

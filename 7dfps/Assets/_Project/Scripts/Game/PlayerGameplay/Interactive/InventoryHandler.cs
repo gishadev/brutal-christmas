@@ -11,7 +11,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
         [Inject] private IInputService _inputService;
 
         public event Action<Slot> SlotEquipped;
-        public event Action<int, IInteractive> SlotContentUpdated;
+        public event Action<int, InteractiveData> SlotContentUpdated;
 
         public Slot EquippedSlot => _slots[_equippedIndex];
         private Slot[] _slots = new Slot[Constants.MAX_INTERACTIVE_SLOTS];
@@ -30,34 +30,21 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
             _inputService.MouseScroll -= OnMouseScroll;
         }
 
-        public void TakeInteractive(IInteractive interactive)
+        public void TakePickable(IPickable pickable)
         {
             if (IsFull())
                 return;
 
             int freeSlotIndex = 0;
             for (int i = 0; i < _slots.Length; i++)
-                if (_slots[i].Interactive == null || _slots[i].Interactive.Equals(null))
+                if (_slots[i].InteractiveData == null || _slots[i].InteractiveData.Equals(null))
                 {
                     freeSlotIndex = i;
                     break;
                 }
 
-            _slots[freeSlotIndex].Interactive = interactive;
-            SlotContentUpdated?.Invoke(freeSlotIndex, interactive);
-
-            // string str = "";
-            // for (int i = 0; i < _slots.Length; i++)
-            // {
-            //     str += $"{i + 1}. ";
-            //
-            //     if (_slots[i].Interactive == null || _slots[i].Interactive.Equals(null))
-            //         str += "NULL \n";
-            //     else
-            //         str += $"{_slots[i].Interactive.gameObject.name} \n";
-            // }
-            //
-            // Debug.Log(str);
+            _slots[freeSlotIndex].InteractiveData = pickable.InteractiveData;
+            SlotContentUpdated?.Invoke(freeSlotIndex, pickable.InteractiveData);
         }
 
         private void OnMouseScroll(float mouseYDelta)
@@ -85,11 +72,11 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
             SlotEquipped?.Invoke(EquippedSlot);
         }
 
-        public bool IsFull() => _slots.All(x => x.Interactive != null);
+        public bool IsFull() => _slots.All(x => x.InteractiveData != null);
     }
 
     public struct Slot
     {
-        public IInteractive Interactive;
+        public InteractiveData InteractiveData;
     }
 }

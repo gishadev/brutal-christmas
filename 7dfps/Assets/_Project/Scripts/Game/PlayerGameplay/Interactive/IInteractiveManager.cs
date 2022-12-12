@@ -2,7 +2,7 @@
 {
     public interface IInteractiveManager
     {
-        IInteractive CurrentInteractive { get; }
-        void TakeInteractive(IInteractive interactive);
+        InteractiveData CurrentInteractive { get; }
+        void TakePickable(IPickable interactivePickable);
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Gisha.fpsjam.Game.PlayerGameplay.Interactive;
 using UnityEngine;
 using Zenject;
@@ -33,9 +32,9 @@ namespace Gisha.fpsjam.Game.UIManager
             _inventory.SlotContentUpdated -= OnContentUpdate;
         }
 
-        private void OnContentUpdate(int slotIndex, IInteractive interactiveContent)
+        private void OnContentUpdate(int slotIndex, InteractiveData data)
         {
-            _slotsUIHandlers[slotIndex].ChangeContent(interactiveContent.InteractiveData.IconSprite);
+            _slotsUIHandlers[slotIndex].ChangeContent(data.IconSprite);
         }
     }
 }

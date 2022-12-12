@@ -6,9 +6,9 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
     {
         Slot EquippedSlot { get; }
         event Action<Slot> SlotEquipped;
-        public event Action<int, IInteractive> SlotContentUpdated;
+        public event Action<int, InteractiveData> SlotContentUpdated;
 
         bool IsFull();
-        void TakeInteractive(IInteractive interactive);
+        void TakePickable(IPickable pickable);
     }
 }

@@ -2,11 +2,11 @@
 
 namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
 {
-    public class TestInteractive : Interactive
+    public class FireworkInteractive : Interactive
     {
         public override void Use()
         {
-            Debug.Log("Interactive Used!");
+            Debug.Log("Pew!");
         }
     }
 }

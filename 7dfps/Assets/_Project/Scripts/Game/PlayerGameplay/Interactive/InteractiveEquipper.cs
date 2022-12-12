@@ -1,5 +1,4 @@
 ﻿using Gisha.fpsjam.Game.InputManager;
-using Gisha.fpsjam.Utilities;
 using UnityEngine;
 using Zenject;
 
@@ -7,66 +6,67 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
 {
     public class InteractiveEquipper : MonoBehaviour
     {
-        [SerializeField] private float takeDst = 2f;
-        [SerializeField] private float takeRadius = 0.25f;
+        [SerializeField] private Transform handTrans;
+
+        private IInteractive _currentInteractive;
 
         private IInputService _inputService;
-        private IInteractiveManager _interactiveManager;
-
-        private IInteractive _potentialInteractive;
-        private Camera _cam;
-        private LayerMask _layerMask;
-        private Ray _screenPointRay;
+        private IInventoryHandler _inventoryHandler;
+        private DiContainer _diContainer;
 
         [Inject]
-        private void Construct(IInputService inputService, IInteractiveManager interactiveManager)
+        private void Construct(DiContainer container, IInputService inputService, IInventoryHandler inventoryHandler)
         {
-            _interactiveManager = interactiveManager;
             _inputService = inputService;
+            _inventoryHandler = inventoryHandler;
+            _diContainer = container;
         }
 
-        private void Awake()
+        private void OnEnable()
         {
-            _cam = Camera.main;
-            _layerMask = 1 << LayerMask.NameToLayer(Constants.INTERACTIVE_LAYER_NAME);
-
-            _inputService.EquipButtonDown += OnEquipBtnDown;
+            _inputService.LMBDown += OnLMBDown;
+            _inventoryHandler.SlotEquipped += OnSlotEquipped;
         }
 
         private void OnDisable()
         {
-            _inputService.EquipButtonDown -= OnEquipBtnDown;
+            _inputService.LMBDown -= OnLMBDown;
+            _inventoryHandler.SlotEquipped -= OnSlotEquipped;
         }
 
-        private void Update()
+        private void OnLMBDown()
         {
-            _screenPointRay = _cam.ScreenPointToRay(Input.mousePosition);
-            var ray = new Ray(_cam.transform.position, _screenPointRay.direction);
-
-            if (Physics.SphereCast(ray, takeRadius, out var hitInfo, takeDst, _layerMask))
-            {
-                if (hitInfo.collider == null)
-                    return;
-
-                if (!hitInfo.collider.TryGetComponent(out _potentialInteractive))
-                    return;
-
-            }
-        }
-
-        private void OnEquipBtnDown()
-        {
-            if (_potentialInteractive == null)
+            if (_currentInteractive == null)
                 return;
 
-            _interactiveManager.TakeInteractive(_potentialInteractive);
+            _currentInteractive.Use();
         }
 
-        private void OnDrawGizmos()
+        private void OnSlotEquipped(Slot slot)
         {
-            Gizmos.color = Color.green;
-            Gizmos.DrawSphere(_screenPointRay.origin, takeRadius);
-            Gizmos.DrawRay(_screenPointRay.origin, _screenPointRay.direction * takeDst);
+            ClearInteractive();
+
+            if (slot.InteractiveData == null)
+                return;
+
+            var interactive = _diContainer.InstantiatePrefab(slot.InteractiveData.Prefab)
+                .GetComponent<IInteractive>();
+
+            interactive.transform.SetParent(handTrans);
+            interactive.transform.localPosition = Vector3.zero;
+            //  interactive.transform.localScale = Vector3.zero;
+            interactive.transform.localRotation = Quaternion.identity;
+
+            _currentInteractive = interactive;
+        }
+
+        private void ClearInteractive()
+        {
+            if (_currentInteractive != null && !_currentInteractive.Equals(null))
+            {
+                Destroy(_currentInteractive.gameObject);
+                _currentInteractive = null;
+            }
         }
     }
 }
