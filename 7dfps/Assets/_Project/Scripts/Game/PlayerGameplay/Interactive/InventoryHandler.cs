@@ -2,7 +2,6 @@
 using System.Linq;
 using Gisha.fpsjam.Game.InputManager;
 using Gisha.fpsjam.Utilities;
-using UnityEngine;
 using Zenject;
 
 namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
@@ -12,6 +11,8 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
         [Inject] private IInputService _inputService;
 
         public event Action<Slot> SlotEquipped;
+        public event Action<int, IInteractive> SlotContentUpdated;
+
         public Slot EquippedSlot => _slots[_equippedIndex];
         private Slot[] _slots = new Slot[Constants.MAX_INTERACTIVE_SLOTS];
 
@@ -43,19 +44,20 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
                 }
 
             _slots[freeSlotIndex].Interactive = interactive;
+            SlotContentUpdated?.Invoke(freeSlotIndex, interactive);
 
-            string str = "";
-            for (int i = 0; i < _slots.Length; i++)
-            {
-                str += $"{i + 1}. ";
-
-                if (_slots[i].Interactive == null || _slots[i].Interactive.Equals(null))
-                    str += "NULL \n";
-                else
-                    str += $"{_slots[i].Interactive.gameObject.name} \n";
-            }
-
-            Debug.Log(str);
+            // string str = "";
+            // for (int i = 0; i < _slots.Length; i++)
+            // {
+            //     str += $"{i + 1}. ";
+            //
+            //     if (_slots[i].Interactive == null || _slots[i].Interactive.Equals(null))
+            //         str += "NULL \n";
+            //     else
+            //         str += $"{_slots[i].Interactive.gameObject.name} \n";
+            // }
+            //
+            // Debug.Log(str);
         }
 
         private void OnMouseScroll(float mouseYDelta)

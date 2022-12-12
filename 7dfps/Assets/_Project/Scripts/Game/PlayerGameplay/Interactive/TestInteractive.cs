@@ -2,9 +2,9 @@
 
 namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
 {
-    public class TestInteractive : MonoBehaviour, IInteractive
+    public class TestInteractive : Interactive
     {
-        public void Use()
+        public override void Use()
         {
             Debug.Log("Interactive Used!");
         }
