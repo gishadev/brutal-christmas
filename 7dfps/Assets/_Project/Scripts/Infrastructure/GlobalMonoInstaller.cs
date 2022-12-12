@@ -15,6 +15,7 @@ namespace Gisha.fpsjam.Infrastructure
             Container.Bind<IPlayerManager>().To<PlayerManager>().AsSingle().NonLazy();
             Container.Bind<IInputService>().To<InputService>().AsSingle().NonLazy();
             Container.Bind<IMorphConstructor>().To<MorphConstructor>().AsSingle().NonLazy();
+            Container.Bind<INPCSpawner>().To<NPCSpawner>().AsSingle().NonLazy();
 
             Container.BindInterfacesTo<InventoryHandler>().AsSingle().NonLazy();
         }
