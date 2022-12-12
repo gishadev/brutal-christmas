@@ -16,10 +16,13 @@ namespace Gisha.fpsjam.Game.NPCManager
 
             var idle = new DoNothing(animator);
             var randomWalk = new WalkToRandomPOI(Movement, animator);
+            var die = new Die();
 
             At(idle, randomWalk, DelayFinished);
             At(randomWalk, idle, RandomStop);
             At(randomWalk, randomWalk, DestinationSucceeded);
+
+            Aat(die, () => IsDied);
 
             _stateMachine.SetState(randomWalk);
             _startState = randomWalk;

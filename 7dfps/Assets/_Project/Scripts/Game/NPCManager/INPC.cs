@@ -9,6 +9,7 @@ namespace Gisha.fpsjam.Game.NPCManager
         Transform transform { get; }
         IMorph Morph { get; }
         INPCMovement Movement { get; }
+        bool IsDied { get; }
         event Action Died;
         abstract void InitStateMachine();
     }

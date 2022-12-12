@@ -11,6 +11,7 @@ namespace Gisha.fpsjam.Game.NPCManager
 
         public IMorph Morph { get; private set; }
         public INPCMovement Movement { get; private set; }
+        public bool IsDied { get; private set; }
         public event Action Died;
 
         protected StateMachine _stateMachine;
@@ -21,6 +22,7 @@ namespace Gisha.fpsjam.Game.NPCManager
         private void Awake()
         {
             Init();
+            IsDied = false;
             _collider = GetComponent<Collider>();
             Movement = GetComponent<INPCMovement>();
         }
@@ -42,6 +44,7 @@ namespace Gisha.fpsjam.Game.NPCManager
             _collider.enabled = false;
 
             Died?.Invoke();
+            IsDied = true;
         }
 
         public abstract void InitStateMachine();
