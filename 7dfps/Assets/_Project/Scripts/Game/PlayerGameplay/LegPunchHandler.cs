@@ -8,11 +8,10 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
 {
     public class LegPunchHandler : MonoBehaviour
     {
-        [SerializeField] private GameObject leg;
-
         private IInputService _inputService;
         private PlayerData _playerData;
 
+        private Animator _animator;
         private Camera _cam;
         private bool _isPunching;
 
@@ -25,9 +24,9 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
 
         private void Awake()
         {
+            _animator = GetComponent<Animator>();
             _cam = Camera.main;
             _inputService.LegPunchButtonDown += DoPunch;
-            leg.SetActive(false);
         }
 
         private void OnDisable()
@@ -47,8 +46,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
 
             _isPunching = true;
 
-            PunchRaycast();
-            PunchAnimation();
+            _animator.SetTrigger("Punch");
 
             yield return new WaitForSeconds(_playerData.PunchDelay);
             _isPunching = false;
@@ -73,15 +71,6 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
             }
         }
 
-        private void PunchAnimation()
-        {
-            leg.SetActive(true);
-            Invoke("DisableLeg", 0.3f);
-        }
-
-        private void DisableLeg()
-        {
-            leg.SetActive(false);
-        }
+        private void OnPunchAnimationEvent() => PunchRaycast();
     }
 }

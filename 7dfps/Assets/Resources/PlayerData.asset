@@ -26,6 +26,6 @@ MonoBehaviour:
   jumpCooldown: 0.1
   jumpForce: 600
   legPunchForce: 35
-  punchDelay: 1.1
+  punchDelay: 0.7
   punchRaycastDst: 2.5
   punchRaycastRadius: 0.7
