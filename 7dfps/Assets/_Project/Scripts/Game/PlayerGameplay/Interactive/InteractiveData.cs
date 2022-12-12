@@ -7,9 +7,10 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
     {
         [SerializeField] private Sprite iconSprite;
         [SerializeField] private GameObject prefab;
+        [Space] [SerializeField] private bool isSingleUse;
 
         public Sprite IconSprite => iconSprite;
-
         public GameObject Prefab => prefab;
+        public bool IsSingleUse => isSingleUse;
     }
 }

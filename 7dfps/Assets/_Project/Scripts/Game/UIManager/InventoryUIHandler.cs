@@ -34,7 +34,10 @@ namespace Gisha.fpsjam.Game.UIManager
 
         private void OnContentUpdate(int slotIndex, InteractiveData data)
         {
-            _slotsUIHandlers[slotIndex].ChangeContent(data.IconSprite);
+            if (data == null)
+                _slotsUIHandlers[slotIndex].ClearContent();
+            else
+                _slotsUIHandlers[slotIndex].ChangeContent(data.IconSprite);
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Linq;
 using Gisha.fpsjam.Game.InputManager;
 using Gisha.fpsjam.Utilities;
 using Zenject;
+using Object = UnityEngine.Object;
 
 namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
 {
@@ -13,15 +14,18 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
         public event Action<Slot> SlotEquipped;
         public event Action<int, InteractiveData> SlotContentUpdated;
 
-        public Slot EquippedSlot => _slots[_equippedIndex];
+        public Slot EquippedSlot => _equippedSlot;
         private Slot[] _slots = new Slot[Constants.MAX_INTERACTIVE_SLOTS];
 
-        private int _equippedIndex = 0;
-
+        private Slot _equippedSlot;
+        
         public void Initialize()
         {
             _inputService.NumberButtonDown += OnNumberButtonDown;
             _inputService.MouseScroll += OnMouseScroll;
+
+            for (int i = 0; i < _slots.Length; i++)
+                _slots[i] = new Slot(i);
         }
 
         public void Dispose()
@@ -35,6 +39,8 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
             if (IsFull())
                 return;
 
+            Object.Destroy(pickable.gameObject);
+
             int freeSlotIndex = 0;
             for (int i = 0; i < _slots.Length; i++)
                 if (_slots[i].InteractiveData == null || _slots[i].InteractiveData.Equals(null))
@@ -47,9 +53,15 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
             SlotContentUpdated?.Invoke(freeSlotIndex, pickable.InteractiveData);
         }
 
+        public void ClearSlot(Slot slot)
+        {
+            slot.InteractiveData = null;
+            SlotContentUpdated?.Invoke(slot.Index, null);
+        }
+
         private void OnMouseScroll(float mouseYDelta)
         {
-            int index = _equippedIndex;
+            int index = _equippedSlot.Index;
 
             if (mouseYDelta > 0f)
                 index++;
@@ -62,21 +74,29 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
             if (index < 0)
                 index = _slots.Length - 1;
 
-            _equippedIndex = index;
-            SlotEquipped?.Invoke(EquippedSlot);
+            _equippedSlot = _slots[index];
+            SlotEquipped?.Invoke(_equippedSlot);
         }
 
         private void OnNumberButtonDown(int index)
         {
-            _equippedIndex = index;
-            SlotEquipped?.Invoke(EquippedSlot);
+            _equippedSlot = _slots[index];
+            SlotEquipped?.Invoke(_equippedSlot);
         }
 
         public bool IsFull() => _slots.All(x => x.InteractiveData != null);
     }
 
-    public struct Slot
+    public class Slot
     {
-        public InteractiveData InteractiveData;
+        public int Index => _index;
+        public InteractiveData InteractiveData { get; set; }
+
+        private int _index;
+
+        public Slot(int index)
+        {
+            _index = index;
+        }
     }
 }

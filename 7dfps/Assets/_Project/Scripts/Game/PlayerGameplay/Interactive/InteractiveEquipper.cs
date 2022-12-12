@@ -9,7 +9,8 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
         [SerializeField] private Transform handTrans;
 
         private IInteractive _currentInteractive;
-
+        private Slot _currentSlot;
+        
         private IInputService _inputService;
         private IInventoryHandler _inventoryHandler;
         private DiContainer _diContainer;
@@ -40,10 +41,17 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
                 return;
 
             _currentInteractive.Use();
+
+            if (_currentInteractive.InteractiveData.IsSingleUse)
+            {
+                _inventoryHandler.ClearSlot(_currentSlot);
+                ClearInteractive();
+            }
         }
 
         private void OnSlotEquipped(Slot slot)
         {
+            _currentSlot = slot;
             ClearInteractive();
 
             if (slot.InteractiveData == null)

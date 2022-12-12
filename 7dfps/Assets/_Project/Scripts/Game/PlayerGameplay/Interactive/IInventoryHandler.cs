@@ -10,5 +10,6 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
 
         bool IsFull();
         void TakePickable(IPickable pickable);
+        void ClearSlot(Slot slot);
     }
 }

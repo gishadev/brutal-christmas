@@ -11,7 +11,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
         [SerializeField] private float takeRadius = 0.25f;
 
         private IInputService _inputService;
-        private IInteractiveManager _interactiveManager;
+        private IInventoryHandler _inventoryHandler;
 
         private IPickable _potentialPickable;
         private Camera _cam;
@@ -19,9 +19,9 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
         private Ray _screenPointRay;
 
         [Inject]
-        private void Construct(IInputService inputService, IInteractiveManager interactiveManager)
+        private void Construct(IInputService inputService, IInventoryHandler inventoryHandler)
         {
-            _interactiveManager = interactiveManager;
+            _inventoryHandler = inventoryHandler;
             _inputService = inputService;
         }
 
@@ -59,7 +59,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
             if (_potentialPickable == null || _potentialPickable.Equals(null))
                 return;
 
-            _interactiveManager.TakePickable(_potentialPickable);
+            _inventoryHandler.TakePickable(_potentialPickable);
         }
 
         private void OnDrawGizmos()

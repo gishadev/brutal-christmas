@@ -16,7 +16,6 @@ namespace Gisha.fpsjam.Infrastructure
             Container.Bind<IInputService>().To<InputService>().AsSingle().NonLazy();
             Container.Bind<IMorphConstructor>().To<MorphConstructor>().AsSingle().NonLazy();
 
-            Container.BindInterfacesTo<InteractiveManager>().AsSingle().NonLazy();
             Container.BindInterfacesTo<InventoryHandler>().AsSingle().NonLazy();
         }
     }
