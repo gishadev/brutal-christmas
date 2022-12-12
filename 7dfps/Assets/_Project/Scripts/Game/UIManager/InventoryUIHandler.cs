@@ -8,6 +8,7 @@ namespace Gisha.fpsjam.Game.UIManager
     public class InventoryUIHandler : MonoBehaviour
     {
         [SerializeField] private Transform slotsUIParent;
+        [SerializeField] private RectTransform equippedHandler;
 
         [Inject] private IInventoryHandler _inventory;
 
@@ -25,19 +26,26 @@ namespace Gisha.fpsjam.Game.UIManager
         private void OnEnable()
         {
             _inventory.SlotContentUpdated += OnContentUpdate;
+            _inventory.SlotEquipped += OnSlotEquip;
         }
 
         private void OnDisable()
         {
             _inventory.SlotContentUpdated -= OnContentUpdate;
+            _inventory.SlotEquipped -= OnSlotEquip;
         }
 
-        private void OnContentUpdate(int slotIndex, InteractiveData data)
+        private void OnSlotEquip(Slot slot)
+        {
+            equippedHandler.anchoredPosition = _slotsUIHandlers[slot.Index].RectTransform.anchoredPosition;
+        }
+
+        private void OnContentUpdate(Slot slot, InteractiveData data)
         {
             if (data == null)
-                _slotsUIHandlers[slotIndex].ClearContent();
+                _slotsUIHandlers[slot.Index].ClearContent();
             else
-                _slotsUIHandlers[slotIndex].ChangeContent(data.IconSprite);
+                _slotsUIHandlers[slot.Index].ChangeContent(data.IconSprite);
         }
     }
 }

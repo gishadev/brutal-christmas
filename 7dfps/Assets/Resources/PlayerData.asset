@@ -17,15 +17,15 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  moveSpeed: 3500
-  maxSpeed: 12
+  moveSpeed: 3700
+  maxSpeed: 14
   counterMovement: 0.175
   threshold: 0.01
   maxSlopeAngle: 35
   gravityForce: 3000
   jumpCooldown: 0.1
   jumpForce: 600
-  legPunchForce: 35
+  legPunchForce: 50
   punchDelay: 0.7
-  punchRaycastDst: 2.5
+  punchRaycastDst: 3
   punchRaycastRadius: 0.7

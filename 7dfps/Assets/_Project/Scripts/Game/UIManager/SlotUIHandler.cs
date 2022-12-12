@@ -6,10 +6,14 @@ namespace Gisha.fpsjam.Game.UIManager
     public class SlotUIHandler : MonoBehaviour
     {
         private Image _contentImage;
+        private RectTransform _rectTransform;
+
+        public RectTransform RectTransform => _rectTransform;
 
         private void Awake()
         {
             _contentImage = transform.GetChild(0).GetComponent<Image>();
+            _rectTransform = GetComponent<RectTransform>();
         }
 
         public void ChangeContent(Sprite sprite)

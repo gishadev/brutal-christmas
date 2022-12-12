@@ -10,7 +10,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
 
         private IInteractive _currentInteractive;
         private Slot _currentSlot;
-        
+
         private IInputService _inputService;
         private IInventoryHandler _inventoryHandler;
         private DiContainer _diContainer;
@@ -27,12 +27,14 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
         {
             _inputService.LMBDown += OnLMBDown;
             _inventoryHandler.SlotEquipped += OnSlotEquipped;
+            _inventoryHandler.SlotContentUpdated += OnSlotContentUpdated;
         }
 
         private void OnDisable()
         {
             _inputService.LMBDown -= OnLMBDown;
             _inventoryHandler.SlotEquipped -= OnSlotEquipped;
+            _inventoryHandler.SlotContentUpdated -= OnSlotContentUpdated;
         }
 
         private void OnLMBDown()
@@ -62,11 +64,17 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
 
             interactive.transform.SetParent(handTrans);
             interactive.transform.localPosition = Vector3.zero;
-            //  interactive.transform.localScale = Vector3.zero;
             interactive.transform.localRotation = Quaternion.identity;
 
             _currentInteractive = interactive;
         }
+
+        private void OnSlotContentUpdated(Slot slot, InteractiveData data)
+        {
+            if (_inventoryHandler.EquippedSlot == slot)
+                OnSlotEquipped(slot);
+        }
+
 
         private void ClearInteractive()
         {

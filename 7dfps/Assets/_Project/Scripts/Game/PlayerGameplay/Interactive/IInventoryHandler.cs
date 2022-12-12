@@ -6,7 +6,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
     {
         Slot EquippedSlot { get; }
         event Action<Slot> SlotEquipped;
-        public event Action<int, InteractiveData> SlotContentUpdated;
+        public event Action<Slot, InteractiveData> SlotContentUpdated;
 
         bool IsFull();
         void TakePickable(IPickable pickable);

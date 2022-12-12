@@ -12,7 +12,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
         [Inject] private IInputService _inputService;
 
         public event Action<Slot> SlotEquipped;
-        public event Action<int, InteractiveData> SlotContentUpdated;
+        public event Action<Slot, InteractiveData> SlotContentUpdated;
 
         public Slot EquippedSlot => _equippedSlot;
         private Slot[] _slots = new Slot[Constants.MAX_INTERACTIVE_SLOTS];
@@ -26,6 +26,8 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
 
             for (int i = 0; i < _slots.Length; i++)
                 _slots[i] = new Slot(i);
+
+            _equippedSlot = _slots[0];
         }
 
         public void Dispose()
@@ -50,13 +52,13 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
                 }
 
             _slots[freeSlotIndex].InteractiveData = pickable.InteractiveData;
-            SlotContentUpdated?.Invoke(freeSlotIndex, pickable.InteractiveData);
+            SlotContentUpdated?.Invoke(_slots[freeSlotIndex], pickable.InteractiveData);
         }
 
         public void ClearSlot(Slot slot)
         {
             slot.InteractiveData = null;
-            SlotContentUpdated?.Invoke(slot.Index, null);
+            SlotContentUpdated?.Invoke(slot, null);
         }
 
         private void OnMouseScroll(float mouseYDelta)
