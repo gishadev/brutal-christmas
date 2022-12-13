@@ -33693,6 +33693,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6519305249385633600, guid: 438eb31ece3db6d4e94fdbbe5b065e24, type: 3}
+      propertyPath: m_fontSize
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6519305249385633600, guid: 438eb31ece3db6d4e94fdbbe5b065e24, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 45
+      objectReference: {fileID: 0}
     - target: {fileID: 7740556516663435427, guid: 438eb31ece3db6d4e94fdbbe5b065e24, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -33708,6 +33716,10 @@ PrefabInstance:
     - target: {fileID: 7740556516663435427, guid: 438eb31ece3db6d4e94fdbbe5b065e24, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7740556518426889010, guid: 438eb31ece3db6d4e94fdbbe5b065e24, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7740556518426889011, guid: 438eb31ece3db6d4e94fdbbe5b065e24, type: 3}
       propertyPath: m_Pivot.x
@@ -33796,6 +33808,10 @@ PrefabInstance:
     - target: {fileID: 7740556518426889015, guid: 438eb31ece3db6d4e94fdbbe5b065e24, type: 3}
       propertyPath: m_Name
       value: MainGUICanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8474113023606449479, guid: 438eb31ece3db6d4e94fdbbe5b065e24, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -54
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 438eb31ece3db6d4e94fdbbe5b065e24, type: 3}
