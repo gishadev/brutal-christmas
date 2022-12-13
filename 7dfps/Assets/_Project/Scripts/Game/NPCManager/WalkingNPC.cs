@@ -1,6 +1,5 @@
 ﻿using System;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Gisha.fpsjam.Game.NPCManager
 {
@@ -13,31 +12,36 @@ namespace Gisha.fpsjam.Game.NPCManager
         {
             _stateMachine = new StateMachine();
 
-            var idle = new Standing(NPCAnimator, chanceOfThinking);
+            var standing = new Standing(NPCAnimator, chanceOfThinking);
             var thinking = new Thinking(NPCAnimator);
             var randomWalk = new WalkToRandomPOI(Movement, NPCAnimator);
+            var startCelebration = new StartCelebration(this, EMOTION_STATE.EXCITED,
+                EMOTION_STATE.HAPPY, EMOTION_STATE.TERRIFIED);
+            var emotioning = new Emotioning(this);
             var die = new Die();
 
-            At(randomWalk, idle, DestinationSucceeded);
-            At(idle, randomWalk, () => !idle.IsThinking());
-            At(idle, thinking, () => idle.IsThinking());
-            At(thinking, randomWalk, DelayFinished);
+            At(randomWalk, standing, DestinationSucceeded);
+            At(emotioning, standing, CelebrationAnimationFinished);
+            At(standing, randomWalk, () => !standing.IsThinking());
+            At(standing, thinking, () => standing.IsThinking());
+            At(thinking, randomWalk, ThinkingDelayFinished);
 
+            At(startCelebration, emotioning, () => true);
+            Aat(startCelebration, () => CelebrationHandler.IsCelebration);
             Aat(die, () => IsDied);
 
-            _stateMachine.SetState(randomWalk);
-            _startState = randomWalk;
+            _stateMachine.SetState(standing);
+            _startState = standing;
 
-            bool DestinationSucceeded()
-            {
-                return (transform.position - randomWalk.Destination).sqrMagnitude < 1f;
-            }
+            bool DestinationSucceeded() => (transform.position - randomWalk.Destination).sqrMagnitude < 1f;
 
-            bool DelayFinished() => idle.GetTime() > thinkingTime;
+            bool ThinkingDelayFinished() => thinking.GetTime() > thinkingTime;
+            bool CelebrationAnimationFinished() => emotioning.GetTime() > emotioning.GetAnimationLength();
 
             void At(IState from, IState to, Func<bool> condition) => _stateMachine.AddTransition(from, to, condition);
             void Aat(IState to, Func<bool> condition) => _stateMachine.AddAnyTransition(to, condition);
         }
+
 
         private void Update()
         {

@@ -16,6 +16,7 @@ namespace Gisha.fpsjam.Game.NPCManager
         bool IsDied { get; }
         event Action Died;
 
+        void Die();
         abstract void InitStateMachine();
     }
 }

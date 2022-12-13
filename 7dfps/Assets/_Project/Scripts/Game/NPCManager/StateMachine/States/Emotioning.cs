@@ -2,15 +2,14 @@
 
 namespace Gisha.fpsjam.Game.NPCManager
 {
-    public class Thinking : IState
+    public class Emotioning : IState
     {
-        private INPCAnimatorController _npcAnimator;
+        private INPC _npc;
         private float _startTime;
 
-
-        public Thinking(INPCAnimatorController npcAnimator)
+        public Emotioning(INPC npc)
         {
-            _npcAnimator = npcAnimator;
+            _npc = npc;
         }
 
         public void Tick()
@@ -20,11 +19,15 @@ namespace Gisha.fpsjam.Game.NPCManager
         public void OnEnter()
         {
             _startTime = Time.time;
-            _npcAnimator.SetEmotion(EMOTION_STATE.THINKING);
         }
 
         public void OnExit()
         {
+        }
+
+        public float GetAnimationLength()
+        {
+            return _npc.NPCAnimator.GetCurrentAnimationLength();
         }
 
         public float GetTime()

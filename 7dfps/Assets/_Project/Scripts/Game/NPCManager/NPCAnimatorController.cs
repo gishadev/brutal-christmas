@@ -23,6 +23,13 @@ namespace Gisha.fpsjam.Game.NPCManager
             _animator.SetInteger("EmotionState", (int) emotionState);
             _animator.SetTrigger("Emotion");
         }
+
+        public float GetCurrentAnimationLength()
+        {
+            var animState = _animator.GetCurrentAnimatorStateInfo(0);
+            float duration = animState.length;
+            return duration;
+        }
     }
 
     public enum MOVEMENT_STATE

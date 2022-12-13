@@ -29,6 +29,7 @@ namespace Gisha.fpsjam.Game.NPCManager
 
         public void OnExit()
         {
+            _npcMovement.Stop();
         }
     }
 }

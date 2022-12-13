@@ -20,13 +20,13 @@ namespace Gisha.fpsjam.Game.NPCManager
 
         protected StateMachine _stateMachine;
         protected IState _startState;
-        
+
         private Collider _collider;
 
         private void Awake()
         {
             Init();
-            
+
             IsDied = false;
             _collider = GetComponent<Collider>();
             Movement = GetComponent<INPCMovement>();
@@ -46,12 +46,18 @@ namespace Gisha.fpsjam.Game.NPCManager
 
         public void OnPunch(Vector3 punchDir, float forceMagnitude)
         {
-            Morph.Ragdoll.Enable();
+            Die();
             Morph.Ragdoll.AddForce(punchDir * forceMagnitude, ForceMode.Impulse);
+        }
+
+        public void Die()
+        {
+            IsDied = true;
             _collider.enabled = false;
 
+            Morph.Ragdoll.Enable();
+
             Died?.Invoke();
-            IsDied = true;
         }
 
         public abstract void InitStateMachine();

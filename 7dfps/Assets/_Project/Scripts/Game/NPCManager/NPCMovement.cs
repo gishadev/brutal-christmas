@@ -1,5 +1,4 @@
 ﻿using Gisha.fpsjam.Game.LevelManager;
-using Gisha.fpsjam.Utilities;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -35,7 +34,17 @@ namespace Gisha.fpsjam.Game.NPCManager
 
         public void MoveToDestination(Vector3 destination)
         {
-            _agent.SetDestination(destination);
+            if (_agent.enabled)
+            {
+                _agent.isStopped = false;
+                _agent.SetDestination(destination);
+            }
+        }
+
+        public void Stop()
+        {
+            if (_agent.enabled)
+                _agent.isStopped = true;
         }
 
         private void OnDied()

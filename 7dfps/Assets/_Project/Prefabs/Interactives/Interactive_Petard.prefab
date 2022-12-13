@@ -97,4 +97,4 @@ MonoBehaviour:
   interactiveData: {fileID: 11400000, guid: 740034b44436b4c418bbba4d35fab45b, type: 2}
   raycastDst: 2
   raycastRadius: 2
-  emittingCelebrationPower: 0.25
+  emittingCelebrationPower: 0.2

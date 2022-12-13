@@ -7,5 +7,6 @@ namespace Gisha.fpsjam.Game.NPCManager
     {
         POI[] PointsOfInterest { get; }
         void MoveToDestination(Vector3 destination);
+        void Stop();
     }
 }
