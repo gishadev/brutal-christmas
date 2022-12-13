@@ -1,5 +1,4 @@
-﻿using Gisha.fpsjam.Game.LevelManager;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gisha.fpsjam.Game.NPCManager
 {
@@ -8,9 +7,9 @@ namespace Gisha.fpsjam.Game.NPCManager
         private INPCMovement _npcMovement;
         public Vector3 Destination { get; private set; }
 
-        private Animator _animator;
+        private INPCAnimatorController _animator;
 
-        public WalkToRandomPOI(INPCMovement movement, Animator animator)
+        public WalkToRandomPOI(INPCMovement movement, INPCAnimatorController animator)
         {
             _npcMovement = movement;
             _animator = animator;
@@ -25,7 +24,7 @@ namespace Gisha.fpsjam.Game.NPCManager
             var randPoint = _npcMovement.PointsOfInterest[Random.Range(0, _npcMovement.PointsOfInterest.Length)];
             Destination = randPoint.transform.position;
             _npcMovement.MoveToDestination(Destination);
-            _animator.SetBool("IsWalking", true);
+            _animator.SetMovementState(MOVEMENT_STATE.WALK);
         }
 
         public void OnExit()

@@ -1130,6 +1130,7 @@ GameObject:
   - component: {fileID: 9071079207462486023}
   - component: {fileID: 9076213987056164370}
   - component: {fileID: 7303498657403656763}
+  - component: {fileID: -881165370767389353}
   m_Layer: 8
   m_Name: Morph 1
   m_TagString: Untagged
@@ -1196,6 +1197,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ed429d171a1f4c21b430be5f78aa2924, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-881165370767389353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2326406086916456647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64a55dcfdffa42b3b5e07d78c37af864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2458338237935858192

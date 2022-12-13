@@ -94,5 +94,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffc1e97ef1e484badd5f4c16cf28efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chanceOfStopping: 25
-  afterStopDelay: 3
+  chanceOfThinking: 30
+  thinkingTime: 5

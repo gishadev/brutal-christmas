@@ -11,20 +11,26 @@ namespace Gisha.fpsjam.Game.NPCManager
 
         public IMorph Morph { get; private set; }
         public INPCMovement Movement { get; private set; }
+        public INPCCelebrationHandler CelebrationHandler { get; private set; }
+        public INPCAnimatorController NPCAnimator { get; private set; }
+
         public bool IsDied { get; private set; }
+
         public event Action Died;
 
         protected StateMachine _stateMachine;
         protected IState _startState;
-
+        
         private Collider _collider;
 
         private void Awake()
         {
             Init();
+            
             IsDied = false;
             _collider = GetComponent<Collider>();
             Movement = GetComponent<INPCMovement>();
+            CelebrationHandler = new NPCCelebrationHandler();
         }
 
         private void Start()
@@ -35,6 +41,7 @@ namespace Gisha.fpsjam.Game.NPCManager
         private void Init()
         {
             Morph = _morphConstructor.CreateRandomMorph(this);
+            NPCAnimator = Morph.gameObject.GetComponent<INPCAnimatorController>();
         }
 
         public void OnPunch(Vector3 punchDir, float forceMagnitude)

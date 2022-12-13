@@ -2,17 +2,19 @@
 
 namespace Gisha.fpsjam.Game.NPCManager
 {
-    public class DoNothing : IState
+    public class Standing : IState
     {
         private float _startTime;
 
-        private Animator _animator;
-        
-        public DoNothing(Animator animator)
+        private INPCAnimatorController _animator;
+        private float _thinkingChance;
+
+        public Standing(INPCAnimatorController animator, float thinkingChance)
         {
             _animator = animator;
+            _thinkingChance = thinkingChance;
         }
-        
+
         public void Tick()
         {
         }
@@ -20,7 +22,7 @@ namespace Gisha.fpsjam.Game.NPCManager
         public void OnEnter()
         {
             _startTime = Time.time;
-            _animator.SetBool("IsWalking", false);
+            _animator.SetMovementState(MOVEMENT_STATE.IDLE);
         }
 
         public void OnExit()
@@ -30,6 +32,11 @@ namespace Gisha.fpsjam.Game.NPCManager
         public float GetTime()
         {
             return Time.time - _startTime;
+        }
+
+        public bool IsThinking()
+        {
+            return Random.Range(0f, 100f) < _thinkingChance;
         }
     }
 }
