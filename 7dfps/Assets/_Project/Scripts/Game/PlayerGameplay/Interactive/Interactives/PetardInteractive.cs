@@ -25,6 +25,8 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
         public override void Use()
         {
             Debug.Log("Boom!");
+
+            EmitCelebration(0.25f);
         }
         
         public void EmitCelebration(float power)

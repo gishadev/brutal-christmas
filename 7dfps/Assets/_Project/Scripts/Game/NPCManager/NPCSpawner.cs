@@ -8,9 +8,12 @@ namespace Gisha.fpsjam.Game.NPCManager
 {
     public class NPCSpawner : INPCSpawner
     {
+        public List<INPC> NPCs => _npcs;
+
         private GameData _gameData;
         private DiContainer _diContainer;
 
+        private List<INPC> _npcs = new List<INPC>();
         private POI[] _points;
         private Transform _parent;
 
@@ -53,6 +56,8 @@ namespace Gisha.fpsjam.Game.NPCManager
             var npcObj = _diContainer.InstantiatePrefab(prefab);
             npcObj.transform.position = poi.transform.position;
             npcObj.transform.SetParent(_parent);
+
+            _npcs.Add(npcObj.GetComponent<INPC>());
         }
     }
 }

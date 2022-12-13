@@ -3,6 +3,7 @@
     public interface ICelebrationManager
     {
         float CelebrationLevel { get; }
-        void OnCelebrate();
+        void OnCelebrate(float celebrationPower);
+        void Init();
     }
 }
