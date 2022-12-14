@@ -3,7 +3,22 @@ guid: 446bf383b07d9b64bbc28974c4ab2734
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gray
+    second: {fileID: 2100000, guid: c26526851f1d67c4b950b18e3c256d71, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: holiday
+    second: {fileID: 2100000, guid: cc76af7fe7211e74f8c512cd1b2afd55, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: store
+    second: {fileID: 2100000, guid: 469a593d8ef093641a5c3b4d66e42fda, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

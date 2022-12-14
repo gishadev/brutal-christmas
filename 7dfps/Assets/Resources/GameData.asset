@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxNPCCount: 15
   npcPrefab: {fileID: 1783267236924914202, guid: c42e2a2473942f141b3ff48d933bb89f, type: 3}
+  maxCelebrationLevel: 5
