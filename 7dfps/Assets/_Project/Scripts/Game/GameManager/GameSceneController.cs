@@ -31,11 +31,33 @@ namespace Gisha.fpsjam.Game.GameManager
             _playerManager.Init(player);
             _npcSpawner.Init();
             _celebrationManager.Init();
+
+            _celebrationManager.Celebrated += OnCelebrated;
+        }
+
+        private void OnDisable()
+        {
+            _celebrationManager.Celebrated -= OnCelebrated;
         }
 
         private void Update()
         {
             _inputService.Update();
+        }
+
+        private void OnCelebrated(float lastCelebrationPower)
+        {
+            if (_celebrationManager.CelebrationLevel >= _celebrationManager.MaxCelebrationLevel)
+                Win();
+        }
+        
+        private void Win()
+        {
+            Debug.Log("YO, you win.");
+        }
+
+        private void Lose()
+        {
         }
     }
 }

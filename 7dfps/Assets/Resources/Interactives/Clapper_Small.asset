@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ec5092c62354e20b1c49042857b28f5, type: 3}
-  m_Name: GameData
+  m_Script: {fileID: 11500000, guid: fde7a53afdf048088d8152e0dfe1a373, type: 3}
+  m_Name: Clapper_Small
   m_EditorClassIdentifier: 
-  maxNPCCount: 15
-  npcPrefab: {fileID: 1783267236924914202, guid: c42e2a2473942f141b3ff48d933bb89f, type: 3}
-  maxCelebrationLevel: 1
+  iconSprite: {fileID: 21300000, guid: 4a231ba0e81e63849a8f985c228e8acd, type: 3}
+  prefab: {fileID: 7325977496071122565, guid: b5f8801b4f0a3e843a3cea9aea99cc18, type: 3}
+  isSingleUse: 1
