@@ -8,9 +8,10 @@ namespace Gisha.fpsjam.Game.GameManager
         [Header("NPC")]
         [SerializeField] private int maxNPCCount = 4;
         [SerializeField] private GameObject npcPrefab;
+        [SerializeField] private float maxCelebrationLevel = 100f;
         
         public int MaxNpcCount => maxNPCCount;
-
         public GameObject NPCPrefab => npcPrefab;
+        public float MaxCelebrationLevel => maxCelebrationLevel;
     }
 }
