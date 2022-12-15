@@ -1,4 +1,5 @@
 using Gisha.fpsjam.Game.CelebrationManager;
+using Gisha.fpsjam.Game.GameManager;
 using Gisha.fpsjam.Game.InputManager;
 using Gisha.fpsjam.Game.NPCManager;
 using Gisha.fpsjam.Game.PlayerGameplay;
@@ -18,6 +19,7 @@ namespace Gisha.fpsjam.Infrastructure
             Container.Bind<IMorphConstructor>().To<MorphConstructor>().AsSingle().NonLazy();
             Container.Bind<INPCSpawner>().To<NPCSpawner>().AsSingle().NonLazy();
             Container.Bind<ICelebrationManager>().To<CelebrationManager>().AsSingle().NonLazy();
+            Container.Bind<ITimer>().To<Timer>().AsSingle().NonLazy();
 
             Container.BindInterfacesTo<InventoryHandler>().AsSingle().NonLazy();
         }
