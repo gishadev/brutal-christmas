@@ -2,6 +2,7 @@
 using System.Linq;
 using Gisha.fpsjam.Game.InputManager;
 using Gisha.fpsjam.Utilities;
+using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
 
@@ -52,6 +53,8 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
                 }
 
             _slots[freeSlotIndex].InteractiveData = pickable.InteractiveData;
+            _slots[freeSlotIndex].Mesh = pickable.Mesh;
+            
             SlotContentUpdated?.Invoke(_slots[freeSlotIndex], pickable.InteractiveData);
         }
 
@@ -66,9 +69,9 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
             int index = _equippedSlot.Index;
 
             if (mouseYDelta > 0f)
-                index++;
-            if (mouseYDelta < 0f)
                 index--;
+            if (mouseYDelta < 0f)
+                index++;
 
             if (index > _slots.Length - 1)
                 index = 0;
@@ -93,6 +96,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
     {
         public int Index => _index;
         public InteractiveData InteractiveData { get; set; }
+        public Mesh Mesh { get; set; }
 
         private int _index;
 

@@ -66,6 +66,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
             interactive.transform.localPosition = slot.InteractiveData.OffsetPosition;
             interactive.transform.localRotation = slot.InteractiveData.OffsetRotation;
             interactive.transform.localScale = slot.InteractiveData.Scale;
+            interactive.gameObject.GetComponent<MeshFilter>().mesh = slot.Mesh;
 
             _currentInteractive = interactive;
         }
