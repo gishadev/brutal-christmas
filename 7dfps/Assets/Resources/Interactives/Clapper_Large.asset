@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fde7a53afdf048088d8152e0dfe1a373, type: 3}
-  m_Name: Firework_Large
+  m_Name: Clapper_Large
   m_EditorClassIdentifier: 
   isSingleUse: 1
-  iconSprite: {fileID: 21300000, guid: 65f0e363b74cf5845ab8c3fbc14f39ac, type: 3}
-  prefab: {fileID: 7325977496071122565, guid: 29dc50634db7d724097082cb20358860, type: 3}
-  offsetPosition: {x: 0, y: 0, z: 0}
-  offsetRotation: {x: 0.5562571, y: -0.0434649, z: 0.029152166, w: 0.82936054}
+  iconSprite: {fileID: 21300000, guid: 4a231ba0e81e63849a8f985c228e8acd, type: 3}
+  prefab: {fileID: 7325977496071122565, guid: 841d4fa63f5c84a4e97697161d05116c, type: 3}
+  offsetPosition: {x: 0.02, y: -0.06, z: -0.2}
+  offsetRotation: {x: 0.5925312, y: -0.011175059, z: 0.032980077, w: 0.80479455}
   scale: {x: 1, y: 1, z: 1}
