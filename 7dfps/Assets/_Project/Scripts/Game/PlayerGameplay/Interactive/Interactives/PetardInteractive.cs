@@ -10,7 +10,6 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
         [SerializeField] private float raycastRadius = 2f;
         [Space] [SerializeField] private float emittingCelebrationPower = 0.25f;
 
-
         public float EmittingCelebrationPower => emittingCelebrationPower;
 
         private Camera _cam;
@@ -28,7 +27,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
 
             EmitCelebration(0.25f);
         }
-        
+
         public void EmitCelebration(float power)
         {
             var ray = _cam.ScreenPointToRay(_screenCenter);

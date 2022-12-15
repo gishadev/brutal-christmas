@@ -63,8 +63,9 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
                 .GetComponent<IInteractive>();
 
             interactive.transform.SetParent(handTrans);
-            interactive.transform.localPosition = Vector3.zero;
-            interactive.transform.localRotation = Quaternion.identity;
+            interactive.transform.localPosition = slot.InteractiveData.OffsetPosition;
+            interactive.transform.localRotation = slot.InteractiveData.OffsetRotation;
+            interactive.transform.localScale = slot.InteractiveData.Scale;
 
             _currentInteractive = interactive;
         }
