@@ -14,5 +14,11 @@ namespace Gisha.fpsjam.Game.NPCManager
             CelebrationAccumulatedPower += power;
             Celebrated?.Invoke(power);
         }
+
+        public void Reset()
+        {
+            CelebrationAccumulatedPower = 0f;
+            IsCelebration = false;
+        }
     }
 }

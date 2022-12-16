@@ -8,5 +8,6 @@ namespace Gisha.fpsjam.Game.NPCManager
         bool IsCelebration { get; set; }
         event Action<float> Celebrated;
         void Celebrate(float power);
+        void Reset();
     }
 }

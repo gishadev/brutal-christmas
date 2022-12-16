@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Gisha.fpsjam.Game.GameManager;
 using Gisha.fpsjam.Game.LevelManager;
 using UnityEngine;
@@ -32,6 +33,12 @@ namespace Gisha.fpsjam.Game.NPCManager
             SpawnAllEnemies();
         }
 
+        public void Dispose()
+        {
+            foreach (var npc in _npcs)
+                npc.Died -= OnNPCDied;
+        }
+
         public void SpawnAllEnemies()
         {
             int count = _gameData.MaxNpcCount;
@@ -46,18 +53,28 @@ namespace Gisha.fpsjam.Game.NPCManager
             for (int i = 0; i < count; i++)
             {
                 var rPOI = POIs[Random.Range(0, POIs.Count)];
-                SpawnEnemy(_gameData.NPCPrefab, rPOI);
+                var npc = SpawnEnemy(_gameData.NPCPrefab, rPOI);
+                npc.Died += OnNPCDied;
                 POIs.Remove(rPOI);
             }
         }
 
-        private void SpawnEnemy(GameObject prefab, POI poi)
+        private INPC SpawnEnemy(GameObject prefab, POI poi)
         {
             var npcObj = _diContainer.InstantiatePrefab(prefab);
             npcObj.transform.position = poi.transform.position;
             npcObj.transform.SetParent(_parent);
 
-            _npcs.Add(npcObj.GetComponent<INPC>());
+            var npc = npcObj.GetComponent<INPC>();
+            _npcs.Add(npc);
+            return npc;
+        }
+
+        private async void OnNPCDied(INPC npc)
+        {
+            await Task.Delay(5000);
+            npc.Respawn();
+            npc.transform.position = _points[Random.Range(0, _points.Length)].transform.position;
         }
     }
 }

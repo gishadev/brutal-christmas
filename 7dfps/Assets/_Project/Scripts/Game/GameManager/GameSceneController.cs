@@ -47,6 +47,7 @@ namespace Gisha.fpsjam.Game.GameManager
         private void OnDisable()
         {
             _celebrationManager.Celebrated -= OnCelebrated;
+            _npcSpawner.Dispose();
         }
 
         private void Update()

@@ -26,6 +26,8 @@ namespace Gisha.fpsjam.Game.NPCManager
             At(standing, thinking, () => standing.IsThinking());
             At(thinking, randomWalk, ThinkingDelayFinished);
 
+            At(die, standing, () => !IsDied);
+
             At(startCelebration, emotioning, () => true);
             Aat(startCelebration, () => CelebrationHandler.IsCelebration);
             Aat(die, () => IsDied);

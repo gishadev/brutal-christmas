@@ -25,11 +25,13 @@ namespace Gisha.fpsjam.Game.NPCManager
         {
             _agent.enabled = true;
             _npc.Died += OnDied;
+            _npc.Respawned += OnRespawned;
         }
 
         private void OnDisable()
         {
             _npc.Died -= OnDied;
+            _npc.Respawned -= OnRespawned;
         }
 
         public void MoveToDestination(Vector3 destination)
@@ -47,10 +49,16 @@ namespace Gisha.fpsjam.Game.NPCManager
                 _agent.isStopped = true;
         }
 
-        private void OnDied()
+        private void OnDied(INPC npc)
         {
             _agent.isStopped = true;
             _agent.enabled = false;
+        }
+
+        private void OnRespawned()
+        {
+            _agent.enabled = true;
+            _agent.isStopped = false;
         }
     }
 }

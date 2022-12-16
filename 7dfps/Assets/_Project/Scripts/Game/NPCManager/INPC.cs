@@ -14,9 +14,12 @@ namespace Gisha.fpsjam.Game.NPCManager
         INPCAnimatorController NPCAnimator { get; }
 
         bool IsDied { get; }
-        event Action Died;
+        event Action<INPC> Died;
+        event Action Respawned;
 
         void Die();
+        void Respawn();
+        
         abstract void InitStateMachine();
     }
 }

@@ -16,7 +16,8 @@ namespace Gisha.fpsjam.Game.NPCManager
 
         public bool IsDied { get; private set; }
 
-        public event Action Died;
+        public event Action<INPC> Died;
+        public event Action Respawned;
 
         protected StateMachine _stateMachine;
         protected IState _startState;
@@ -57,7 +58,17 @@ namespace Gisha.fpsjam.Game.NPCManager
 
             Morph.Ragdoll.Enable();
 
-            Died?.Invoke();
+            Died?.Invoke(this);
+        }
+
+        public void Respawn()
+        {
+            IsDied = false;
+            _collider.enabled = true;
+            Morph.Ragdoll.Disable();
+            CelebrationHandler.Reset();
+            
+            Respawned?.Invoke();
         }
 
         public abstract void InitStateMachine();
