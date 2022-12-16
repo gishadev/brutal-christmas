@@ -1,4 +1,5 @@
 ﻿using System;
+using Gisha.Effects.VFX;
 using Gisha.fpsjam.Game.CelebrationManager;
 using Gisha.fpsjam.Game.InputManager;
 using Gisha.fpsjam.Game.NPCManager;
@@ -14,18 +15,20 @@ namespace Gisha.fpsjam.Game.GameManager
         private IPlayerManager _playerManager;
         private INPCSpawner _npcSpawner;
         private ICelebrationManager _celebrationManager;
+        private IVFXManager _vfxManager;
 
         private ITimer _timer;
-        
+
         [Inject]
         public void Construct(IInputService inputService, IPlayerManager playerManager, INPCSpawner npcSpawner,
-            ICelebrationManager celebrationManager, ITimer timer)
+            ICelebrationManager celebrationManager, ITimer timer, IVFXManager vfxManager)
         {
             _inputService = inputService;
             _playerManager = playerManager;
             _npcSpawner = npcSpawner;
             _celebrationManager = celebrationManager;
             _timer = timer;
+            _vfxManager = vfxManager;
         }
 
         private void Awake()
@@ -34,9 +37,10 @@ namespace Gisha.fpsjam.Game.GameManager
             _playerManager.Init(player);
             _npcSpawner.Init();
             _celebrationManager.Init();
+            _vfxManager.Init();
 
             _timer.Start();
-            
+
             _celebrationManager.Celebrated += OnCelebrated;
         }
 
@@ -56,7 +60,7 @@ namespace Gisha.fpsjam.Game.GameManager
             if (_celebrationManager.CelebrationLevel >= _celebrationManager.MaxCelebrationLevel)
                 Win();
         }
-        
+
         private void Win()
         {
             Debug.Log("YO, you win.");

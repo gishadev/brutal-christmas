@@ -1,5 +1,7 @@
-﻿using Gisha.fpsjam.Game.NPCManager;
+﻿using Gisha.Effects.VFX;
+using Gisha.fpsjam.Game.NPCManager;
 using UnityEngine;
+using Zenject;
 
 namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
 {
@@ -10,14 +12,17 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
         [Space] [SerializeField] private float emittingCelebrationPower = 0.25f;
 
         public float EmittingCelebrationPower => emittingCelebrationPower;
-        
+
+        [Inject] private IVFXManager _vfxManager;
+
         public override void Use()
         {
             Debug.Log("Boom!");
 
             EmitCelebration(0.25f);
+            _vfxManager.EmitAt("clapper_small_explosion", transform.position, transform.rotation);
         }
-
+     
         public void EmitCelebration(float power)
         {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);

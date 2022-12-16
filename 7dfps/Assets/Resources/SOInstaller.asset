@@ -15,3 +15,4 @@ MonoBehaviour:
   playerData: {fileID: 11400000, guid: 27fdb7f82e5fef146817c67b71ea7c6f, type: 2}
   npcData: {fileID: 11400000, guid: d42f6a8573bee2d46b2a4f78875b5d35, type: 2}
   gameData: {fileID: 11400000, guid: d0bc1189971679840a62d8ac0281521a, type: 2}
+  poolData: {fileID: 11400000, guid: bb946a13e7ec7294f83effb7b8fd5c46, type: 2}

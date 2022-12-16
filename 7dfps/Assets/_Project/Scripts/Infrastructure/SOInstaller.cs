@@ -1,6 +1,7 @@
 ﻿using Gisha.fpsjam.Game.GameManager;
 using Gisha.fpsjam.Game.NPCManager;
 using Gisha.fpsjam.Game.PlayerGameplay;
+using Gisha.Optimisation;
 using UnityEngine;
 using Zenject;
 
@@ -12,10 +13,11 @@ namespace Gisha.fpsjam.Infrastructure
         [SerializeField] private PlayerData playerData;
         [SerializeField] private NPCData npcData;
         [SerializeField] private GameData gameData;
+        [SerializeField] private PoolData poolData;
 
         public override void InstallBindings()
         {
-            Container.BindInstances(playerData, npcData, gameData);
+            Container.BindInstances(playerData, npcData, gameData, poolData);
         }
     }
 }
