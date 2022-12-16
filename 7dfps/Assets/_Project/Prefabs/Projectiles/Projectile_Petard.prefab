@@ -127,5 +127,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 3
-  celebrationPower: 0.55
+  celebrationPower: 0.41
   explosionRadius: 5

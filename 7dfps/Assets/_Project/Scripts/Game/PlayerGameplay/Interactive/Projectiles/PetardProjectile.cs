@@ -1,7 +1,9 @@
 ﻿using System.Collections;
+using Gisha.Effects.VFX;
 using Gisha.fpsjam.Game.NPCManager;
 using Gisha.fpsjam.Utilities;
 using UnityEngine;
+using Zenject;
 
 namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive.Projectiles
 {
@@ -11,6 +13,8 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive.Projectiles
         [SerializeField] private float lifeTime = 5f;
         [Header("Explosion")] [SerializeField] private float celebrationPower = 0.55f;
         [SerializeField] private float explosionRadius = 5f;
+
+        [Inject] private IVFXManager _vfxManager;
         
         public float EmittingCelebrationPower => celebrationPower;
 
@@ -22,6 +26,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive.Projectiles
         private void Explode()
         {
             EmitCelebration(celebrationPower);
+            _vfxManager.EmitAt("petard_explosion", transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
 

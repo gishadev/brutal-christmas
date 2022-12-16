@@ -7,6 +7,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
 {
     public class ClapperInteractive : Interactive, ICelebrative
     {
+        [SerializeField] private Transform shotPoint;
         [SerializeField] private float raycastDst = 2f;
         [SerializeField] private float raycastRadius = 2f;
         [Space] [SerializeField] private float emittingCelebrationPower = 0.25f;
@@ -20,9 +21,9 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
             Debug.Log("Boom!");
 
             EmitCelebration(0.25f);
-            _vfxManager.EmitAt("clapper_small_explosion", transform.position, transform.rotation);
+            _vfxManager.EmitAt("clapper_explosion", shotPoint.transform.position, shotPoint.transform.rotation);
         }
-     
+
         public void EmitCelebration(float power)
         {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
