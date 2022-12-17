@@ -9,7 +9,11 @@ namespace Gisha.fpsjam.Game.NPCManager
     {
         [Inject] private IMorphConstructor _morphConstructor;
         [SerializeField] private bool isRespawnable;
-        
+
+        [SerializeField] protected EMOTION_STATE[] weakEmotions;
+        [SerializeField] protected EMOTION_STATE[] averageEmotions;
+        [SerializeField] protected EMOTION_STATE[] strongEmotions;
+
         public IMorph Morph { get; private set; }
         public INPCMovement Movement { get; private set; }
         public INPCCelebrationHandler CelebrationHandler { get; private set; }

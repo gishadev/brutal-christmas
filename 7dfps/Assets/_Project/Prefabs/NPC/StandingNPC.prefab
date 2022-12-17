@@ -59,4 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRespawnable: 0
+  weakEmotions: 0500000006000000
+  averageEmotions: 00000000050000000100000006000000
+  strongEmotions: 010000000300000002000000
   chanceOfThinking: 0

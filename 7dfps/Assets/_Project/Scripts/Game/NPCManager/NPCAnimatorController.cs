@@ -46,6 +46,8 @@ namespace Gisha.fpsjam.Game.NPCManager
         HAPPY,
         TERRIFIED,
         PRAY,
-        THINKING
+        THINKING,
+        SURPRISED,
+        WAVING
     }
 }
