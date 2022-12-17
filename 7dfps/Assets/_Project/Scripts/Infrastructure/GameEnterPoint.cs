@@ -13,7 +13,7 @@ namespace Gisha.fpsjam.Infrastructure
 
         private async void Init()
         {
-            SceneManager.LoadScene(Constants.GAME_SCENE);
+            SceneManager.LoadScene(Constants.MENU_SCENE);
         }
     }
 }

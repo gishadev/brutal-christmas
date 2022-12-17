@@ -16,6 +16,7 @@ namespace Gisha.fpsjam.Game.CelebrationManager
 
         public void Init()
         {
+            CelebrationLevel = 0f;
             foreach (var npc in _npcSpawner.NPCs)
                 npc.CelebrationHandler.Celebrated += OnCelebrate;
         }
