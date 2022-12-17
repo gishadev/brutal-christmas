@@ -10,7 +10,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
     {
         private IInputService _inputService;
         private PlayerData _playerData;
-
+        
         private Animator _animator;
         private Camera _cam;
         private bool _isPunching;

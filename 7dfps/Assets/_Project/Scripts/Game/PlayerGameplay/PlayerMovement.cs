@@ -13,7 +13,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
         private IInputService _inputService;
 
         private bool _readyToJump = true;
-
+        
         private Rigidbody _rb;
         private Player _player;
 

@@ -61,6 +61,5 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
         }
 
         #endregion
-
     }
 }

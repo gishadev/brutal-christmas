@@ -42,6 +42,7 @@ namespace Gisha.fpsjam.Game.GameManager
             _npcSpawner.Init();
             _celebrationManager.Init();
             _vfxManager.Init();
+            _inputService.Init();
 
 
             _celebrationManager.Celebrated += OnCelebrated;
@@ -57,6 +58,7 @@ namespace Gisha.fpsjam.Game.GameManager
         {
             _celebrationManager.Celebrated -= OnCelebrated;
             _npcSpawner.Dispose();
+            _inputService.Dispose();
         }
 
         private void Update()
@@ -64,7 +66,7 @@ namespace Gisha.fpsjam.Game.GameManager
             _inputService.Update();
             _timer.Tick();
         }
-        
+
         private void Win()
         {
             Debug.Log("YO, you win.");

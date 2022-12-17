@@ -4,6 +4,7 @@ namespace Gisha.fpsjam.Game.InputManager
 {
     public interface IInputService
     {
+        bool IsWorking { get; }
         float HorizontalInput { get; }
         float VerticalInput { get; }
         bool IsJumping { get; }
@@ -15,6 +16,9 @@ namespace Gisha.fpsjam.Game.InputManager
         event Action JumpButtonUp;
         event Action LMBDown;
         event Action RMBDown;
+
+        void Init();
+        void Dispose();
         void Update();
     }
 }

@@ -1,10 +1,15 @@
 ﻿using System;
+using Gisha.fpsjam.Infrastructure;
 using UnityEngine;
+using Zenject;
 
 namespace Gisha.fpsjam.Game.InputManager
 {
     public class InputService : IInputService
     {
+        [Inject] private SignalBus _signalBus;
+
+        public bool IsWorking { get; private set; }
         public float HorizontalInput { get; private set; }
         public float VerticalInput { get; private set; }
 
@@ -21,10 +26,37 @@ namespace Gisha.fpsjam.Game.InputManager
         private KeyCode[] _numberKeyCodes =
             {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5};
 
+        public void Init()
+        {
+            _signalBus.Subscribe<GameStartedSignal>(ResumeInput);
+            _signalBus.Subscribe<LoseSignal>(PauseInput);
+            _signalBus.Subscribe<WinSignal>(PauseInput);
+        }
+
+        public void Dispose()
+        {
+            _signalBus.Unsubscribe<GameStartedSignal>(ResumeInput);
+            _signalBus.Unsubscribe<LoseSignal>(PauseInput);
+            _signalBus.Unsubscribe<WinSignal>(PauseInput);
+        }
+
         public void Update()
         {
+            if (!IsWorking)
+                return;
+
             HandleKeysInput();
             HandleMouseInput();
+        }
+
+        private void PauseInput()
+        {
+            IsWorking = false;
+        }
+
+        private void ResumeInput()
+        {
+            IsWorking = true;
         }
 
         private void HandleKeysInput()

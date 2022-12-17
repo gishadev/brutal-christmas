@@ -6,6 +6,5 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
     {
         GameObject gameObject { get; }
         Transform transform { get; }
-        
     }
 }
