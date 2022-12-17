@@ -1,26 +1,26 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+using Gisha.Optimisation;
 using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
 
 namespace Gisha.Effects.Audio
 {
-    public class AudioManager : IAudioManager
+    public class AudioManager : PoolManager, IAudioManager
     {
         [Inject] private AudioData _audioData;
-        
+
         public float MusicVolume { get; private set; } = 1f;
         public float SfxVolume { get; private set; } = 1f;
 
         private Transform _parent;
 
-        public void Init()
+        public void InitAmbient()
         {
             _parent = new GameObject("[AUDIO]").transform;
             Object.DontDestroyOnLoad(_parent.gameObject);
-            
+
             SetupAudio(_audioData.MusicCollection);
             SetupAudio(_audioData.SfxCollection);
         }
@@ -43,7 +43,7 @@ namespace Gisha.Effects.Audio
                 array[i].AudioSource.loop = array[i].IsLooping;
             }
         }
-        
+
         public void Play(string name, AudioType audioType)
         {
             var collection = Array.Empty<Audio>();
@@ -67,8 +67,15 @@ namespace Gisha.Effects.Audio
 
             data.AudioSource.Play();
         }
+        
+        public void EmitSpatial(string name, Vector3 position)
+        {
+            if (!TryEmit(name, PoolObjectType.SFX, out var obj))
+                return;
 
-
+            obj.transform.position = position;
+        }
+        
         public void SetVolume(float volume, AudioType audioType)
         {
             var collection = new List<Audio>();

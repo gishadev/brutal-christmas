@@ -1,16 +1,18 @@
-﻿using UnityEngine;
+﻿using Gisha.Effects.Audio;
+using UnityEngine;
 
 namespace Gisha.fpsjam.Game.NPCManager
 {
     public class Thinking : IState
     {
-        private INPCAnimatorController _npcAnimator;
         private float _startTime;
+        private IAudioManager _audioManager;
+        private INPC _npc;
 
-
-        public Thinking(INPCAnimatorController npcAnimator)
+        public Thinking(INPC npc, IAudioManager audioManager)
         {
-            _npcAnimator = npcAnimator;
+            _audioManager = audioManager;
+            _npc = npc;
         }
 
         public void Tick()
@@ -20,7 +22,8 @@ namespace Gisha.fpsjam.Game.NPCManager
         public void OnEnter()
         {
             _startTime = Time.time;
-            _npcAnimator.SetEmotion(EMOTION_STATE.THINKING);
+            _audioManager.EmitSpatial("npc_thinking", _npc.transform.position);
+            _npc.NPCAnimator.SetEmotion(EMOTION_STATE.THINKING);
         }
 
         public void OnExit()

@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using Gisha.Effects.Audio;
+using UnityEngine;
 using Zenject;
+using AudioType = Gisha.Effects.Audio.AudioType;
 
 namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
 {
@@ -9,6 +11,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
         [SerializeField] private float throwForce = 10f;
 
         [Inject] private DiContainer _diContainer;
+        [Inject] private IAudioManager _audioManager;
 
         public override void Use()
         {
@@ -19,6 +22,8 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
             var direction = Camera.main.ScreenPointToRay(Input.mousePosition).direction;
             var rb = projectile.GetComponent<Rigidbody>();
             rb.AddForce(direction * throwForce, ForceMode.Impulse);
+            
+            _audioManager.Play("throw", AudioType.SFX);
         }
     }
 }

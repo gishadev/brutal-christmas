@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Linq;
+using Gisha.Effects.Audio;
 using Gisha.fpsjam.Game.InputManager;
 using Gisha.fpsjam.Utilities;
 using UnityEngine;
 using Zenject;
+using AudioType = Gisha.Effects.Audio.AudioType;
 using Object = UnityEngine.Object;
 
 namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
 {
-    public class InventoryHandler : IInventoryHandler, IInitializable, IDisposable
+    public class InventoryHandler : IInventoryHandler
     {
         [Inject] private IInputService _inputService;
+        [Inject] private IAudioManager _audioManager;
 
         public event Action<Slot> SlotEquipped;
         public event Action<Slot, InteractiveData> SlotContentUpdated;
@@ -19,8 +22,8 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
         private Slot[] _slots = new Slot[Constants.MAX_INTERACTIVE_SLOTS];
 
         private Slot _equippedSlot;
-        
-        public void Initialize()
+
+        public void Init()
         {
             _inputService.NumberButtonDown += OnNumberButtonDown;
             _inputService.MouseScroll += OnMouseScroll;
@@ -54,7 +57,8 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
 
             _slots[freeSlotIndex].InteractiveData = pickable.InteractiveData;
             _slots[freeSlotIndex].Mesh = pickable.Mesh;
-            
+
+            _audioManager.Play("equip", AudioType.SFX);
             SlotContentUpdated?.Invoke(_slots[freeSlotIndex], pickable.InteractiveData);
         }
 

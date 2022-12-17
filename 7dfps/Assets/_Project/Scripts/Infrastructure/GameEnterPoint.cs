@@ -18,7 +18,7 @@ namespace Gisha.fpsjam.Infrastructure
 
         private async void Init()
         {
-            _audioManager.Init();
+            _audioManager.InitAmbient();
             _audioManager.Play("music", AudioType.Music);
             SceneManager.LoadScene(Constants.MENU_SCENE);
         }

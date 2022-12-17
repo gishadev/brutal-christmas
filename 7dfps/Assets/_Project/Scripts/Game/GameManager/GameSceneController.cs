@@ -1,13 +1,13 @@
-﻿using System;
+﻿using Gisha.Effects.Audio;
 using Gisha.Effects.VFX;
 using Gisha.fpsjam.Game.CelebrationManager;
 using Gisha.fpsjam.Game.InputManager;
 using Gisha.fpsjam.Game.NPCManager;
 using Gisha.fpsjam.Game.PlayerGameplay;
+using Gisha.fpsjam.Game.PlayerGameplay.Interactive;
 using Gisha.fpsjam.Infrastructure;
 using Gisha.fpsjam.Utilities;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Gisha.fpsjam.Game.GameManager
@@ -19,13 +19,16 @@ namespace Gisha.fpsjam.Game.GameManager
         private INPCSpawner _npcSpawner;
         private ICelebrationManager _celebrationManager;
         private IVFXManager _vfxManager;
+        private IAudioManager _audioManager;
         private SignalBus _signalBus;
+        private IInventoryHandler _inventory;
 
         private ITimer _timer;
 
         [Inject]
         public void Construct(IInputService inputService, IPlayerManager playerManager, INPCSpawner npcSpawner,
-            ICelebrationManager celebrationManager, ITimer timer, IVFXManager vfxManager, SignalBus signalBus)
+            ICelebrationManager celebrationManager, ITimer timer, IVFXManager vfxManager, SignalBus signalBus,
+            IAudioManager audioManager, IInventoryHandler inventoryHandler)
         {
             _inputService = inputService;
             _playerManager = playerManager;
@@ -34,6 +37,8 @@ namespace Gisha.fpsjam.Game.GameManager
             _timer = timer;
             _vfxManager = vfxManager;
             _signalBus = signalBus;
+            _audioManager = audioManager;
+            _inventory = inventoryHandler;
         }
 
         private void Awake()
@@ -44,8 +49,9 @@ namespace Gisha.fpsjam.Game.GameManager
             _celebrationManager.Init();
             _vfxManager.Init();
             _inputService.Init();
-
-
+            _audioManager.Init();
+            _inventory.Init();
+            
             _celebrationManager.Celebrated += OnCelebrated;
         }
 
@@ -60,6 +66,7 @@ namespace Gisha.fpsjam.Game.GameManager
             _celebrationManager.Celebrated -= OnCelebrated;
             _npcSpawner.Dispose();
             _inputService.Dispose();
+            _inventory.Dispose();
         }
 
         private void Update()

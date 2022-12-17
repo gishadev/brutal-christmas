@@ -7,7 +7,7 @@ namespace Gisha.Effects.VFX
     {
         public void EmitAt(string effectName, Vector3 position, Quaternion rotation)
         {
-            if (!TryEmit(effectName, out var obj))
+            if (!TryEmit(effectName, PoolObjectType.VFX, out var obj))
                 return;
 
             obj.transform.position = position;

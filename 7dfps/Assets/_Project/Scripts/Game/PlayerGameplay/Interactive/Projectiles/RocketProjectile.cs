@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Gisha.Effects.Audio;
 using Gisha.Effects.VFX;
 using Gisha.fpsjam.Game.NPCManager;
 using Gisha.fpsjam.Utilities;
@@ -17,7 +18,8 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive.Projectiles
         [SerializeField] private float raycastDst = 1f;
 
         [Inject] private IVFXManager _vfxManager;
-        
+        [Inject] private IAudioManager _audioManager;
+
         public float EmittingCelebrationPower => celebrationPower;
         private LayerMask _allExceptPlayer;
 
@@ -47,6 +49,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive.Projectiles
         {
             EmitCelebration(celebrationPower);
             _vfxManager.EmitAt("petard_explosion", transform.position, Quaternion.identity);
+            _audioManager.EmitSpatial("firework_explosion", transform.position);
             Destroy(gameObject);
         }
 

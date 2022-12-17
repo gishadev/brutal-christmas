@@ -1,5 +1,7 @@
 ﻿using System;
+using Gisha.Effects.Audio;
 using UnityEngine;
+using Zenject;
 
 namespace Gisha.fpsjam.Game.NPCManager
 {
@@ -8,17 +10,19 @@ namespace Gisha.fpsjam.Game.NPCManager
         [SerializeField] private float chanceOfThinking = 25f;
         [SerializeField] private float thinkingTime = 3f;
 
+        [Inject] private IAudioManager _audioManager;
+        
         public override void InitStateMachine()
         {
             _stateMachine = new StateMachine();
 
             var standing = new Standing(NPCAnimator, chanceOfThinking);
-            var thinking = new Thinking(NPCAnimator);
+            var thinking = new Thinking(this, _audioManager);
             var randomWalk = new WalkToRandomPOI(Movement, NPCAnimator);
             var startCelebration = new StartCelebration(this, EMOTION_STATE.EXCITED,
                 EMOTION_STATE.HAPPY, EMOTION_STATE.TERRIFIED);
             var emotioning = new Emotioning(this);
-            var die = new Die();
+            var die = new Die(this, _audioManager);
 
             At(randomWalk, standing, DestinationSucceeded);
             At(emotioning, standing, CelebrationAnimationFinished);
@@ -32,8 +36,8 @@ namespace Gisha.fpsjam.Game.NPCManager
             Aat(startCelebration, () => CelebrationHandler.IsCelebration);
             Aat(die, () => IsDied);
 
-            _stateMachine.SetState(standing);
-            _startState = standing;
+            _stateMachine.SetState(randomWalk);
+            _startState = randomWalk;
 
             bool DestinationSucceeded() => (transform.position - randomWalk.Destination).sqrMagnitude < 1f;
 

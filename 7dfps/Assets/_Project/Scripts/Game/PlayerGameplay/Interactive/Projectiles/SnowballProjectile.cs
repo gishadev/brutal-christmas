@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
+using Gisha.Effects.Audio;
 using Gisha.fpsjam.Game.NPCManager;
 using Gisha.fpsjam.Utilities;
 using UnityEngine;
+using Zenject;
 
 namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive.Projectiles
 {
@@ -12,6 +14,8 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive.Projectiles
         [SerializeField] private float celebrationPower = 0.1f;
         [SerializeField] private float raycastRadius = 0.5f;
 
+        [Inject] private IAudioManager _audioManager;
+        
         public float EmittingCelebrationPower => celebrationPower;
 
         private void Awake()
@@ -49,6 +53,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive.Projectiles
             if (other.TryGetComponent(out INPC npc))
                 EmitCelebration(EmittingCelebrationPower);
 
+            _audioManager.EmitSpatial("snowball_impact", transform.position);
             Destroy(gameObject);
         }
 

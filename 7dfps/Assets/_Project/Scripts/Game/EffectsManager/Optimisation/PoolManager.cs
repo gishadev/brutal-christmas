@@ -28,9 +28,11 @@ namespace Gisha.Optimisation
             InitializePools(_poolData.PoolObjects);
         }
 
-        protected bool TryEmit(string name, out GameObject emittedObj)
+        protected bool TryEmit(string name, PoolObjectType poolType, out GameObject emittedObj)
         {
-            var poolObj = _poolData.PoolObjects.FirstOrDefault(x => x.Name == name);
+            var objects = _poolData.PoolObjects.Where(x => x.PoolType == poolType);
+
+            var poolObj = objects.FirstOrDefault(x => x.Name == name);
             var prefab = poolObj.Prefab;
             emittedObj = null;
 
@@ -103,7 +105,7 @@ namespace Gisha.Optimisation
 
             if (index == -1)
             {
-                var newPO = new PoolObject(prefab);
+                var newPO = new PoolObject(prefab, PoolObjectType.VFX);
                 _poolData.PoolObjects.Add(newPO);
                 index = _poolData.PoolObjects.Count - 1;
 

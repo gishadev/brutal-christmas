@@ -13,9 +13,27 @@ MonoBehaviour:
   m_Name: PoolData
   m_EditorClassIdentifier: 
   poolObjects:
-  - name: clapper_explosion
+  - name: npc_thinking
     prefabs:
-    - {fileID: 3538663094648297322, guid: 488d4b56f593a0f44b2b6ff3651cad16, type: 3}
+    - {fileID: 3538663094648297322, guid: 796311b6976a79e4e9d2280dde489d37, type: 3}
+    poolObjectType: 1
+  - name: snowball_impact
+    prefabs:
+    - {fileID: 6387434204198610729, guid: 6ad9805a19361064889adc37b063b098, type: 3}
+    poolObjectType: 1
+  - name: firework_explosion
+    prefabs:
+    - {fileID: 6387434204198610729, guid: 0676f8b16a574d84c9e70240a2bcd369, type: 3}
+    poolObjectType: 1
   - name: petard_explosion
     prefabs:
     - {fileID: 3538663094648297322, guid: 796311b6976a79e4e9d2280dde489d37, type: 3}
+    poolObjectType: 1
+  - name: clapper_explosion
+    prefabs:
+    - {fileID: 3538663094648297322, guid: 488d4b56f593a0f44b2b6ff3651cad16, type: 3}
+    poolObjectType: 0
+  - name: petard_explosion
+    prefabs:
+    - {fileID: 3538663094648297322, guid: 796311b6976a79e4e9d2280dde489d37, type: 3}
+    poolObjectType: 0

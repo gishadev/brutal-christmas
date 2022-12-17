@@ -58,4 +58,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b459cfe0ba3c4878a263300553b1942e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chanceOfThinking: 25
+  isRespawnable: 0
+  chanceOfThinking: 0

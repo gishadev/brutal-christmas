@@ -1,6 +1,8 @@
-﻿using Gisha.fpsjam.Utilities;
+﻿using Gisha.Effects.Audio;
+using Gisha.fpsjam.Utilities;
 using UnityEngine;
 using Zenject;
+using AudioType = Gisha.Effects.Audio.AudioType;
 
 namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
 {
@@ -9,6 +11,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
         [SerializeField] private GameObject projectilePrefab;
 
         [Inject] private DiContainer _diContainer;
+        [Inject] private IAudioManager _audioManager;
         private LayerMask _allExceptPlayer;
 
         private void Awake()
@@ -28,6 +31,8 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
             projectile.transform.position = transform.position;
             projectile.transform.rotation =
                 Quaternion.LookRotation(direction) * Quaternion.Euler(Vector3.right * 90f);
+            
+            _audioManager.Play("shoot_firework", AudioType.SFX);
         }
     }
 }

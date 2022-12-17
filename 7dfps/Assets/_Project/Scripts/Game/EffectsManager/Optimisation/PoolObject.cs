@@ -8,25 +8,27 @@ namespace Gisha.Optimisation
     {
         [SerializeField] private string name;
         [SerializeField] private GameObject[] prefabs;
+        [SerializeField] private PoolObjectType poolObjectType;
 
         public string Name => name;
         public GameObject Prefab => IsVariative ? prefabs[Random.Range(0, prefabs.Length)] : prefabs[0];
         public bool IsVariative => prefabs.Length > 1;
         public int[] InstanceIds => prefabs.Select(x => x.GetInstanceID()).ToArray();
+        public PoolObjectType PoolType => poolObjectType;
 
-        public PoolObject(GameObject _prefab, int _initCount = 1)
+        public PoolObject(GameObject prefab, PoolObjectType poolObjectType)
         {
             prefabs = new GameObject[1];
-            prefabs[0] = _prefab;
+            prefabs[0] = prefab;
 
             name = prefabs[0].name;
+            this.poolObjectType = poolObjectType;
         }
+    }
 
-        public PoolObject(GameObject[] _prefabs, int _initCount = 1)
-        {
-            prefabs = _prefabs;
-
-            name = prefabs[0].name;
-        }
+    public enum PoolObjectType
+    {
+        VFX,
+        SFX
     }
 }

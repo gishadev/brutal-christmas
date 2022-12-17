@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Gisha.fpsjam.Game.GameManager;
 using Gisha.fpsjam.Game.LevelManager;
 using UnityEngine;
 using Zenject;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace Gisha.fpsjam.Game.NPCManager
 {
@@ -83,9 +86,16 @@ namespace Gisha.fpsjam.Game.NPCManager
             if (!npc.IsRespawnable)
                 return;
 
-            await Task.Delay(5000);
-            npc.Respawn();
-            npc.transform.position = _points[Random.Range(0, _points.Length)].transform.position;
+            try
+            {
+                await Task.Delay(5000);
+                npc.Respawn();
+                npc.transform.position = _points[Random.Range(0, _points.Length)].transform.position;
+            }
+            catch (Exception e)
+            {
+                Debug.Log("Task is canceled!");
+            }
         }
     }
 }
