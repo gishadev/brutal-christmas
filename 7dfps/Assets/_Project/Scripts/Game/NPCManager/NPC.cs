@@ -8,13 +8,15 @@ namespace Gisha.fpsjam.Game.NPCManager
     public abstract class NPC : MonoBehaviour, INPC, IPunchable
     {
         [Inject] private IMorphConstructor _morphConstructor;
-
+        [SerializeField] private bool isRespawnable;
+        
         public IMorph Morph { get; private set; }
         public INPCMovement Movement { get; private set; }
         public INPCCelebrationHandler CelebrationHandler { get; private set; }
         public INPCAnimatorController NPCAnimator { get; private set; }
 
         public bool IsDied { get; private set; }
+        public bool IsRespawnable => isRespawnable;
 
         public event Action<INPC> Died;
         public event Action Respawned;

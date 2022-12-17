@@ -72,6 +72,9 @@ namespace Gisha.fpsjam.Game.NPCManager
 
         private async void OnNPCDied(INPC npc)
         {
+            if (!npc.IsRespawnable)
+                return;
+
             await Task.Delay(5000);
             npc.Respawn();
             npc.transform.position = _points[Random.Range(0, _points.Length)].transform.position;
