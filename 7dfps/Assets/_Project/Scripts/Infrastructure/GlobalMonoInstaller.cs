@@ -15,6 +15,10 @@ namespace Gisha.fpsjam.Infrastructure
         {
             SignalBusInstaller.Install(Container);
 
+            Container.DeclareSignal<WinSignal>();
+            Container.DeclareSignal<LoseSignal>();
+            Container.DeclareSignal<GameStartedSignal>();
+            
             Container.Bind<IPlayerManager>().To<PlayerManager>().AsSingle().NonLazy();
             Container.Bind<IInputService>().To<InputService>().AsSingle().NonLazy();
             Container.Bind<IMorphConstructor>().To<MorphConstructor>().AsSingle().NonLazy();

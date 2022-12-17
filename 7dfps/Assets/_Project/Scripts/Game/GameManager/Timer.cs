@@ -22,7 +22,7 @@ namespace Gisha.fpsjam.Game.GameManager
         {
             IsTicking = true;
         }
-        
+
         public void Reset()
         {
             CurrentTime = 0f;

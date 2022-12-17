@@ -20,8 +20,12 @@ namespace Gisha.Optimisation
 
         public void Init()
         {
-            InitializePools(_poolData.PoolObjects);
             _parent = new GameObject("[POOL]").transform;
+
+            _objectsByPoolObject = new Dictionary<IPoolObject, List<GameObject>>();
+            _parentByPoolObject = new Dictionary<IPoolObject, Transform>();
+
+            InitializePools(_poolData.PoolObjects);
         }
 
         protected bool TryEmit(string name, out GameObject emittedObj)
@@ -111,8 +115,8 @@ namespace Gisha.Optimisation
 
         private void CreateObjectParent(IPoolObject poKey)
         {
-            string name = string.Format("pool_{0}", poKey.Name);
-            GameObject parent = new GameObject(name);
+            var name = string.Format("pool_{0}", poKey.Name);
+            var parent = new GameObject(name);
             parent.transform.SetParent(_parent);
 
             _parentByPoolObject.Add(poKey, parent.transform);

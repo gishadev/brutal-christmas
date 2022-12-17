@@ -4,7 +4,9 @@ using Gisha.fpsjam.Game.CelebrationManager;
 using Gisha.fpsjam.Game.InputManager;
 using Gisha.fpsjam.Game.NPCManager;
 using Gisha.fpsjam.Game.PlayerGameplay;
+using Gisha.fpsjam.Infrastructure;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Gisha.fpsjam.Game.GameManager
@@ -16,12 +18,13 @@ namespace Gisha.fpsjam.Game.GameManager
         private INPCSpawner _npcSpawner;
         private ICelebrationManager _celebrationManager;
         private IVFXManager _vfxManager;
+        private SignalBus _signalBus;
 
         private ITimer _timer;
 
         [Inject]
         public void Construct(IInputService inputService, IPlayerManager playerManager, INPCSpawner npcSpawner,
-            ICelebrationManager celebrationManager, ITimer timer, IVFXManager vfxManager)
+            ICelebrationManager celebrationManager, ITimer timer, IVFXManager vfxManager, SignalBus signalBus)
         {
             _inputService = inputService;
             _playerManager = playerManager;
@@ -29,6 +32,7 @@ namespace Gisha.fpsjam.Game.GameManager
             _celebrationManager = celebrationManager;
             _timer = timer;
             _vfxManager = vfxManager;
+            _signalBus = signalBus;
         }
 
         private void Awake()
@@ -39,9 +43,14 @@ namespace Gisha.fpsjam.Game.GameManager
             _celebrationManager.Init();
             _vfxManager.Init();
 
-            _timer.Start();
 
             _celebrationManager.Celebrated += OnCelebrated;
+        }
+
+        private void Start()
+        {
+            _timer.Start();
+            _signalBus.Fire<GameStartedSignal>();
         }
 
         private void OnDisable()
@@ -55,22 +64,26 @@ namespace Gisha.fpsjam.Game.GameManager
             _inputService.Update();
             _timer.Tick();
         }
-
-        private void OnCelebrated(float lastCelebrationPower)
-        {
-            if (_celebrationManager.CelebrationLevel >= _celebrationManager.MaxCelebrationLevel)
-                Win();
-        }
-
+        
         private void Win()
         {
             Debug.Log("YO, you win.");
+            _signalBus.Fire<WinSignal>();
+
             _timer.Pause();
         }
 
         private void Lose()
         {
+            _signalBus.Fire<LoseSignal>();
+
             _timer.Pause();
+        }
+
+        private void OnCelebrated(float lastCelebrationPower)
+        {
+            if (_celebrationManager.CelebrationLevel >= _celebrationManager.MaxCelebrationLevel)
+                Win();
         }
     }
 }
