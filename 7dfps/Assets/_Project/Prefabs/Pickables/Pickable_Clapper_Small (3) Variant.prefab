@@ -7,30 +7,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1795637367276097704, guid: 2b91fcebcb59ccb42be7580d4d21c32d, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1795637367276097704, guid: 2b91fcebcb59ccb42be7580d4d21c32d, type: 3}
-      propertyPath: outlineMode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1795637367276097704, guid: 2b91fcebcb59ccb42be7580d4d21c32d, type: 3}
-      propertyPath: outlineWidth
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1795637367276097704, guid: 2b91fcebcb59ccb42be7580d4d21c32d, type: 3}
-      propertyPath: outlineColor.b
-      value: 0.19807759
-      objectReference: {fileID: 0}
-    - target: {fileID: 1795637367276097704, guid: 2b91fcebcb59ccb42be7580d4d21c32d, type: 3}
-      propertyPath: outlineColor.g
-      value: 0.22750275
-      objectReference: {fileID: 0}
-    - target: {fileID: 1795637367276097704, guid: 2b91fcebcb59ccb42be7580d4d21c32d, type: 3}
-      propertyPath: outlineColor.r
-      value: 0.9811321
-      objectReference: {fileID: 0}
     - target: {fileID: 7595017915018307405, guid: 2b91fcebcb59ccb42be7580d4d21c32d, type: 3}
       propertyPath: m_Mesh
       value: 

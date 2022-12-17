@@ -7,30 +7,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8533359221962547115, guid: 868e3ad1c9eb5124c90b3556514066c0, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8533359221962547115, guid: 868e3ad1c9eb5124c90b3556514066c0, type: 3}
-      propertyPath: outlineMode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -8533359221962547115, guid: 868e3ad1c9eb5124c90b3556514066c0, type: 3}
-      propertyPath: outlineWidth
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8533359221962547115, guid: 868e3ad1c9eb5124c90b3556514066c0, type: 3}
-      propertyPath: outlineColor.b
-      value: 0.19807759
-      objectReference: {fileID: 0}
-    - target: {fileID: -8533359221962547115, guid: 868e3ad1c9eb5124c90b3556514066c0, type: 3}
-      propertyPath: outlineColor.g
-      value: 0.22750275
-      objectReference: {fileID: 0}
-    - target: {fileID: -8533359221962547115, guid: 868e3ad1c9eb5124c90b3556514066c0, type: 3}
-      propertyPath: outlineColor.r
-      value: 0.9811321
-      objectReference: {fileID: 0}
     - target: {fileID: 4125116296516509793, guid: 868e3ad1c9eb5124c90b3556514066c0, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -42,18 +18,6 @@ PrefabInstance:
     - target: {fileID: 4125116296516509822, guid: 868e3ad1c9eb5124c90b3556514066c0, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125116296516509822, guid: 868e3ad1c9eb5124c90b3556514066c0, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125116296516509822, guid: 868e3ad1c9eb5124c90b3556514066c0, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4125116296516509822, guid: 868e3ad1c9eb5124c90b3556514066c0, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4125116296516509822, guid: 868e3ad1c9eb5124c90b3556514066c0, type: 3}
       propertyPath: m_LocalPosition.x
