@@ -1,4 +1,5 @@
-﻿using Gisha.fpsjam.Game.GameManager;
+﻿using Gisha.Effects.Audio;
+using Gisha.fpsjam.Game.GameManager;
 using Gisha.fpsjam.Game.NPCManager;
 using Gisha.fpsjam.Game.PlayerGameplay;
 using Gisha.Optimisation;
@@ -14,10 +15,11 @@ namespace Gisha.fpsjam.Infrastructure
         [SerializeField] private NPCData npcData;
         [SerializeField] private GameData gameData;
         [SerializeField] private PoolData poolData;
+        [SerializeField] private AudioData audioData;
 
         public override void InstallBindings()
         {
-            Container.BindInstances(playerData, npcData, gameData, poolData);
+            Container.BindInstances(playerData, npcData, gameData, poolData, audioData);
         }
     }
 }

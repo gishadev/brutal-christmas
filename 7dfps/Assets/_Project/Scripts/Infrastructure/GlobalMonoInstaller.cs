@@ -1,3 +1,4 @@
+using Gisha.Effects.Audio;
 using Gisha.Effects.VFX;
 using Gisha.fpsjam.Game.CelebrationManager;
 using Gisha.fpsjam.Game.GameManager;
@@ -18,7 +19,7 @@ namespace Gisha.fpsjam.Infrastructure
             Container.DeclareSignal<WinSignal>();
             Container.DeclareSignal<LoseSignal>();
             Container.DeclareSignal<GameStartedSignal>();
-            
+
             Container.Bind<IPlayerManager>().To<PlayerManager>().AsSingle().NonLazy();
             Container.Bind<IInputService>().To<InputService>().AsSingle().NonLazy();
             Container.Bind<IMorphConstructor>().To<MorphConstructor>().AsSingle().NonLazy();
@@ -26,6 +27,7 @@ namespace Gisha.fpsjam.Infrastructure
             Container.Bind<ICelebrationManager>().To<CelebrationManager>().AsSingle().NonLazy();
             Container.Bind<ITimer>().To<Timer>().AsSingle().NonLazy();
             Container.Bind<IVFXManager>().To<VFXManager>().AsSingle().NonLazy();
+            Container.Bind<IAudioManager>().To<AudioManager>().AsSingle().NonLazy();
 
             Container.BindInterfacesTo<InventoryHandler>().AsSingle().NonLazy();
         }
