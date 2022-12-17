@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 3807076319003412882, guid: 1b85b88f469dfa1418c06af6ae31d37b, type: 3}
     - target: {fileID: 7731289130328883923, guid: 2e6c517843fd53449b22030cab8827ff, type: 3}
       propertyPath: m_Name
-      value: Pickable_Clapper_Average
+      value: Pickable_Clapper_Average Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e6c517843fd53449b22030cab8827ff, type: 3}

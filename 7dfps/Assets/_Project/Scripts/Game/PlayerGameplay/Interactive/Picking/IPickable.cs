@@ -8,5 +8,6 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
         GameObject gameObject { get; }
         InteractiveData InteractiveData { get; }
         Mesh Mesh { get; }
+        Outline Outline { get; }
     }
 }
