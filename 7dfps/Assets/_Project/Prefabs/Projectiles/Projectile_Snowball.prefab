@@ -126,5 +126,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 5
-  celebrationPower: 0.1
+  celebrationPower: 0.2
   raycastRadius: 0.5

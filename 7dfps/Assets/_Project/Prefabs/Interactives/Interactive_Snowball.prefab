@@ -96,4 +96,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactiveData: {fileID: 11400000, guid: dee5d193340eb894da656e171b7770c9, type: 2}
   projectilePrefab: {fileID: 6456568724291622046, guid: d8d0d2723abcacb44850d15519e69d59, type: 3}
-  throwForce: 15
+  throwForce: 20

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec5092c62354e20b1c49042857b28f5, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
-  maxNPCCount: 20
-  npcPrefab: {fileID: 1783267236924914202, guid: c42e2a2473942f141b3ff48d933bb89f, type: 3}
-  maxCelebrationLevel: 10
+  maxWalkingNPCCount: 25
+  walkingNPCPrefab: {fileID: 1783267236924914202, guid: c42e2a2473942f141b3ff48d933bb89f, type: 3}
+  standingNPCPrefab: {fileID: 1783267236924914202, guid: c21caced3f3b8854faa880929d06355d, type: 3}
+  maxCelebrationLevel: 25

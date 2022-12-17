@@ -6,12 +6,14 @@ namespace Gisha.fpsjam.Game.GameManager
     public class GameData : ScriptableObject
     {
         [Header("NPC")]
-        [SerializeField] private int maxNPCCount = 4;
-        [SerializeField] private GameObject npcPrefab;
+        [SerializeField] private int maxWalkingNPCCount = 20;
+        [SerializeField] private GameObject walkingNPCPrefab;
+        [SerializeField] private GameObject standingNPCPrefab;
         [SerializeField] private float maxCelebrationLevel = 100f;
         
-        public int MaxNpcCount => maxNPCCount;
-        public GameObject NPCPrefab => npcPrefab;
+        public int MaxWalkingNpcCount => maxWalkingNPCCount;
+        public GameObject StandingNPCPrefab => standingNPCPrefab;
+        public GameObject WalkingNPCPrefab => walkingNPCPrefab;
         public float MaxCelebrationLevel => maxCelebrationLevel;
     }
 }

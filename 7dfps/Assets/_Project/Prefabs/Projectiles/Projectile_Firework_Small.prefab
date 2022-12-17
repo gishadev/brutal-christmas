@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flySpeed: 35
   lifeTime: 5
-  celebrationPower: 0.31
+  celebrationPower: 0.5
   explosionRadius: 5
   raycastRadius: 0.5
   raycastDst: 1

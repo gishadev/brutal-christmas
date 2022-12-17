@@ -99,7 +99,7 @@ MonoBehaviour:
   shotPoint: {fileID: 7034263707841589046}
   raycastDst: 3
   raycastRadius: 3
-  emittingCelebrationPower: 0.4
+  emittingCelebrationPower: 0.71
 --- !u!1 &8882937501970400029
 GameObject:
   m_ObjectHideFlags: 0

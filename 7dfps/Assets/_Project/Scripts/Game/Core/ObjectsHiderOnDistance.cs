@@ -1,5 +1,4 @@
-﻿using System;
-using Gisha.fpsjam.Game.PlayerGameplay;
+﻿using Gisha.fpsjam.Game.PlayerGameplay;
 using UnityEngine;
 using Zenject;
 
@@ -24,13 +23,23 @@ namespace Gisha.fpsjam.Game.Core
         private void ShowObjects()
         {
             foreach (var obj in objectsToHide)
+            {
+                if (obj == null)
+                    continue;
+
                 obj.SetActive(true);
+            }
         }
 
         private void HideObjects()
         {
             foreach (var obj in objectsToHide)
+            {
+                if (obj == null)
+                    continue;
+
                 obj.SetActive(false);
+            }
         }
 
         private void OnDrawGizmosSelected()

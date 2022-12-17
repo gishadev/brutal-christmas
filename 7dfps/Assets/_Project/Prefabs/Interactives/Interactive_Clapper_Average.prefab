@@ -129,4 +129,4 @@ MonoBehaviour:
   shotPoint: {fileID: 1661994741999864677}
   raycastDst: 2.5
   raycastRadius: 2.5
-  emittingCelebrationPower: 0.25
+  emittingCelebrationPower: 0.5

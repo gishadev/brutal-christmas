@@ -1,4 +1,5 @@
-﻿using Gisha.fpsjam.Game.LevelManager;
+﻿using System.Linq;
+using Gisha.fpsjam.Game.LevelManager;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -18,7 +19,9 @@ namespace Gisha.fpsjam.Game.NPCManager
         {
             _agent = GetComponent<NavMeshAgent>();
             _npc = GetComponent<INPC>();
-            _pointsOfInterest = FindObjectsOfType<POI>();
+            _pointsOfInterest = FindObjectsOfType<POI>()
+                .Where(x => x.NPCType == NPCType.WalkingNPC)
+                .ToArray();
         }
 
         private void Start()

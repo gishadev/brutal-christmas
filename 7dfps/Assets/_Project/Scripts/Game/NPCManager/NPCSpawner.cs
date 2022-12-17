@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Gisha.fpsjam.Game.GameManager;
 using Gisha.fpsjam.Game.LevelManager;
@@ -41,21 +42,27 @@ namespace Gisha.fpsjam.Game.NPCManager
 
         public void SpawnAllEnemies()
         {
-            int count = _gameData.MaxNpcCount;
+            int count = _gameData.MaxWalkingNpcCount;
             if (count > _points.Length)
             {
                 count = _points.Length;
                 Debug.LogError("_gameData.MaxNpcCount is higher than points count.");
             }
 
-
-            List<POI> POIs = new List<POI>(_points);
+            var walkingPOIs = new List<POI>(_points.Where(x => x.NPCType == NPCType.WalkingNPC));
             for (int i = 0; i < count; i++)
             {
-                var rPOI = POIs[Random.Range(0, POIs.Count)];
-                var npc = SpawnEnemy(_gameData.NPCPrefab, rPOI);
+                var rPOI = walkingPOIs[Random.Range(0, walkingPOIs.Count)];
+                var npc = SpawnEnemy(_gameData.WalkingNPCPrefab, rPOI);
                 npc.Died += OnNPCDied;
-                POIs.Remove(rPOI);
+                walkingPOIs.Remove(rPOI);
+            }
+
+            var standingPOIs = new List<POI>(_points.Where(x => x.NPCType == NPCType.StandingNPC));
+            for (int i = 0; i < standingPOIs.Count; i++)
+            {
+                var npc = SpawnEnemy(_gameData.StandingNPCPrefab, standingPOIs[i]);
+                npc.Died += OnNPCDied;
             }
         }
 
@@ -63,6 +70,7 @@ namespace Gisha.fpsjam.Game.NPCManager
         {
             var npcObj = _diContainer.InstantiatePrefab(prefab);
             npcObj.transform.position = poi.transform.position;
+            npcObj.transform.rotation = poi.transform.rotation;
             npcObj.transform.SetParent(_parent);
 
             var npc = npcObj.GetComponent<INPC>();
