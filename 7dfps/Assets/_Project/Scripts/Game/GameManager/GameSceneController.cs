@@ -5,6 +5,7 @@ using Gisha.fpsjam.Game.InputManager;
 using Gisha.fpsjam.Game.NPCManager;
 using Gisha.fpsjam.Game.PlayerGameplay;
 using Gisha.fpsjam.Infrastructure;
+using Gisha.fpsjam.Utilities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -70,16 +71,21 @@ namespace Gisha.fpsjam.Game.GameManager
         private void Win()
         {
             Debug.Log("YO, you win.");
-            _signalBus.Fire<WinSignal>();
 
             _timer.Pause();
+
+            if (!PlayerPrefs.HasKey(Constants.BEST_TIME_KEY) ||
+                _timer.CurrentTime < PlayerPrefs.GetFloat(Constants.BEST_TIME_KEY))
+                PlayerPrefs.SetFloat(Constants.BEST_TIME_KEY, _timer.CurrentTime);
+
+            _signalBus.Fire<WinSignal>();
         }
 
         private void Lose()
         {
-            _signalBus.Fire<LoseSignal>();
-
             _timer.Pause();
+
+            _signalBus.Fire<LoseSignal>();
         }
 
         private void OnCelebrated(float lastCelebrationPower)

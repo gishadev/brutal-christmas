@@ -26,12 +26,7 @@ namespace Gisha.fpsjam.Game.UIManager
 
         private void UpdateTimeUI(float lastTime)
         {
-            var minutes = Mathf.Floor(lastTime / 60);
-            var seconds = (lastTime % 60);
-            var fraction = (lastTime * 1000);
-            fraction %= 1000;
-
-            textObj.text = string.Format("{0:00}:{1:00}:{2:000}", minutes, seconds, fraction);
+            textObj.text = TimeConverter.ConvertTime(lastTime);
         }
     }
 }
