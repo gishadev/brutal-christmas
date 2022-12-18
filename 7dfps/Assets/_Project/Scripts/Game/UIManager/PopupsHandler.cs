@@ -1,9 +1,11 @@
-﻿using Gisha.fpsjam.Game.InputManager;
+﻿using Gisha.Effects.Audio;
+using Gisha.fpsjam.Game.InputManager;
 using Gisha.fpsjam.Infrastructure;
 using Gisha.fpsjam.Utilities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
+using AudioType = Gisha.Effects.Audio.AudioType;
 
 namespace Gisha.fpsjam.Game.UIManager
 {
@@ -13,14 +15,16 @@ namespace Gisha.fpsjam.Game.UIManager
 
         private SignalBus _signalBus;
         private IInputService _inputService;
+        private IAudioManager _audioManager;
 
         private bool _isPopupShowing;
 
         [Inject]
-        private void Construct(SignalBus signalBus, IInputService inputService)
+        private void Construct(SignalBus signalBus, IInputService inputService, IAudioManager audioManager)
         {
             _signalBus = signalBus;
             _inputService = inputService;
+            _audioManager = audioManager;
         }
 
         private void OnEnable()
@@ -74,16 +78,22 @@ namespace Gisha.fpsjam.Game.UIManager
             Cursor.visible = false;
 
             HidePopups();
+
+            _audioManager.Play("click_1", AudioType.SFX);
         }
 
         public void OnClick_Restart()
         {
             SceneManager.LoadScene(Constants.GAME_SCENE);
+
+            _audioManager.Play("click_1", AudioType.SFX);
         }
 
         public void OnClick_ReturnToMenu()
         {
             SceneManager.LoadScene(Constants.MENU_SCENE);
+
+            _audioManager.Play("click_1", AudioType.SFX);
         }
 
         private void OnEscapeButtonDown()

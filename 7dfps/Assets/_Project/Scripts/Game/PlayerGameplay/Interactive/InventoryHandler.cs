@@ -85,12 +85,16 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
 
             _equippedSlot = _slots[index];
             SlotEquipped?.Invoke(_equippedSlot);
+
+            _audioManager.Play("select", AudioType.SFX);
         }
 
         private void OnNumberButtonDown(int index)
         {
             _equippedSlot = _slots[index];
             SlotEquipped?.Invoke(_equippedSlot);
+
+            _audioManager.Play("select", AudioType.SFX);
         }
 
         public bool IsFull() => _slots.All(x => x.InteractiveData != null);
