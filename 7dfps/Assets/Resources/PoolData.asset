@@ -31,7 +31,7 @@ MonoBehaviour:
     poolObjectType: 1
   - name: petard_explosion
     prefabs:
-    - {fileID: 3538663094648297322, guid: 796311b6976a79e4e9d2280dde489d37, type: 3}
+    - {fileID: 6387434204198610729, guid: df2c58b0c57d56840ae46c2e8d137144, type: 3}
     poolObjectType: 1
   - name: clapper_explosion
     prefabs:

@@ -15,4 +15,4 @@ MonoBehaviour:
   maxWalkingNPCCount: 25
   walkingNPCPrefab: {fileID: 1783267236924914202, guid: c42e2a2473942f141b3ff48d933bb89f, type: 3}
   standingNPCPrefab: {fileID: 1783267236924914202, guid: c21caced3f3b8854faa880929d06355d, type: 3}
-  maxCelebrationLevel: 20
+  maxCelebrationLevel: 25
