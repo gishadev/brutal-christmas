@@ -41,6 +41,12 @@ namespace Gisha.fpsjam.Menu
             SceneManager.LoadScene(Constants.GAME_SCENE);
         }
 
+        public void OnClick_ClearPrefs()
+        {
+            _audioManager.Play("click_2", AudioType.SFX);
+            PlayerPrefs.DeleteAll();
+        }
+
         public void OnClick_Quit()
         {
             _audioManager.Play("click_1", AudioType.SFX);
