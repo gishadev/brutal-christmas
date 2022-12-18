@@ -86,3 +86,9 @@ MonoBehaviour:
     isFade: 0
     volume: 1
     pitch: 1
+  - name: select
+    audioClip: {fileID: 8300000, guid: bf9f56ad7c22d114996451b0a9494129, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
