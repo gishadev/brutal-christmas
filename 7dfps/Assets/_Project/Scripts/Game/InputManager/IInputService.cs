@@ -14,6 +14,7 @@ namespace Gisha.fpsjam.Game.InputManager
         event Action<float> MouseScroll;
         event Action JumpButtonDown;
         event Action JumpButtonUp;
+        event Action EscapeButtonDown;
         event Action LMBDown;
         event Action RMBDown;
 

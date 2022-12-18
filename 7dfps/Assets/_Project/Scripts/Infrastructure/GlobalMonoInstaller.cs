@@ -19,6 +19,8 @@ namespace Gisha.fpsjam.Infrastructure
             Container.DeclareSignal<WinSignal>();
             Container.DeclareSignal<LoseSignal>();
             Container.DeclareSignal<GameStartedSignal>();
+            Container.DeclareSignal<PauseSignal>();
+            Container.DeclareSignal<ResumeSignal>();
 
             Container.Bind<IVFXManager>().To<VFXManager>().AsSingle().NonLazy();
             Container.Bind<IAudioManager>().To<AudioManager>().AsSingle().NonLazy();

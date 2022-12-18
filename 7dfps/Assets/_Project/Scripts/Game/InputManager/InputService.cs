@@ -20,6 +20,7 @@ namespace Gisha.fpsjam.Game.InputManager
         public event Action<float> MouseScroll;
         public event Action JumpButtonDown;
         public event Action JumpButtonUp;
+        public event Action EscapeButtonDown;
         public event Action LMBDown;
         public event Action RMBDown;
 
@@ -29,15 +30,19 @@ namespace Gisha.fpsjam.Game.InputManager
         public void Init()
         {
             _signalBus.Subscribe<GameStartedSignal>(ResumeInput);
+            _signalBus.Subscribe<ResumeSignal>(ResumeInput);
             _signalBus.Subscribe<LoseSignal>(PauseInput);
             _signalBus.Subscribe<WinSignal>(PauseInput);
+            _signalBus.Subscribe<PauseSignal>(PauseInput);
         }
 
         public void Dispose()
         {
             _signalBus.Unsubscribe<GameStartedSignal>(ResumeInput);
+            _signalBus.Unsubscribe<ResumeSignal>(ResumeInput);
             _signalBus.Unsubscribe<LoseSignal>(PauseInput);
             _signalBus.Unsubscribe<WinSignal>(PauseInput);
+            _signalBus.Unsubscribe<PauseSignal>(PauseInput);
         }
 
         public void Update()
@@ -74,6 +79,9 @@ namespace Gisha.fpsjam.Game.InputManager
                 JumpButtonDown?.Invoke();
             if (Input.GetKeyUp(KeyCode.Space))
                 JumpButtonUp?.Invoke();
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+                EscapeButtonDown?.Invoke();
 
             for (var i = 0; i < _numberKeyCodes.Length; i++)
                 if (Input.GetKeyDown(_numberKeyCodes[i]))
