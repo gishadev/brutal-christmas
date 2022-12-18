@@ -17,7 +17,7 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 7a70d654e1c97cf46aae7714da96f2fa, type: 3}
     isLooping: 1
     isFade: 0
-    volume: 0.3
+    volume: 0.1
     pitch: 1
   sfxCollection:
   - name: click_1
