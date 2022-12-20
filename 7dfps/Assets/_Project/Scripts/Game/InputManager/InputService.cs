@@ -15,6 +15,7 @@ namespace Gisha.fpsjam.Game.InputManager
 
         public bool IsJumping { get; private set; }
         public event Action LegPunchButtonDown;
+        public event Action HideUIButtonDown;
         public event Action PickButtonDown;
         public event Action<int> NumberButtonDown;
         public event Action<float> MouseScroll;
@@ -82,6 +83,9 @@ namespace Gisha.fpsjam.Game.InputManager
 
             if (Input.GetKeyDown(KeyCode.Escape))
                 EscapeButtonDown?.Invoke();
+
+            if (Input.GetKeyDown(KeyCode.Home))
+                HideUIButtonDown?.Invoke();
 
             for (var i = 0; i < _numberKeyCodes.Length; i++)
                 if (Input.GetKeyDown(_numberKeyCodes[i]))

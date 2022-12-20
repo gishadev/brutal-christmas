@@ -9,6 +9,7 @@ namespace Gisha.fpsjam.Game.InputManager
         float VerticalInput { get; }
         bool IsJumping { get; }
         event Action LegPunchButtonDown;
+        event Action HideUIButtonDown;
         event Action PickButtonDown;
         event Action<int> NumberButtonDown;
         event Action<float> MouseScroll;
