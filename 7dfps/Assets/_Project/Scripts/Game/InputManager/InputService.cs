@@ -48,6 +48,9 @@ namespace Gisha.fpsjam.Game.InputManager
 
         public void Update()
         {
+            if (Input.GetKeyDown(KeyCode.Home))
+                HideUIButtonDown?.Invoke();
+
             if (!IsWorking)
                 return;
 
@@ -83,9 +86,6 @@ namespace Gisha.fpsjam.Game.InputManager
 
             if (Input.GetKeyDown(KeyCode.Escape))
                 EscapeButtonDown?.Invoke();
-
-            if (Input.GetKeyDown(KeyCode.Home))
-                HideUIButtonDown?.Invoke();
 
             for (var i = 0; i < _numberKeyCodes.Length; i++)
                 if (Input.GetKeyDown(_numberKeyCodes[i]))
