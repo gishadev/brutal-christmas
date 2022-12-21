@@ -42,7 +42,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
         {
             _screenPointRay = _cam.ScreenPointToRay(Input.mousePosition);
             var ray = new Ray(_cam.transform.position, _screenPointRay.direction);
-            
+
             // Outline reseting.
             if (_potentialPickable != null && !_potentialPickable.Equals(null))
                 _potentialPickable.Outline.enabled = false;
@@ -50,13 +50,18 @@ namespace Gisha.fpsjam.Game.PlayerGameplay.Interactive
             if (Physics.SphereCast(ray, takeRadius, out var hitInfo, takeDst, _layerMask))
             {
                 if (hitInfo.collider == null)
+                {
+                    _potentialPickable = null;
                     return;
-                
+                }
+
                 if (!hitInfo.collider.TryGetComponent(out _potentialPickable))
                     return;
 
                 _potentialPickable.Outline.enabled = true;
             }
+            else
+                _potentialPickable = null;
         }
 
         private void OnPickBtnDown()
