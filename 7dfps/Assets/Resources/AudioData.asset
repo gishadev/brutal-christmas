@@ -1,0 +1,94 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83fd223053c64df8b775fb38cd60c43a, type: 3}
+  m_Name: AudioData
+  m_EditorClassIdentifier: 
+  musicCollection:
+  - name: music
+    audioClip: {fileID: 8300000, guid: 7a70d654e1c97cf46aae7714da96f2fa, type: 3}
+    isLooping: 1
+    isFade: 0
+    volume: 0.1
+    pitch: 1
+  sfxCollection:
+  - name: click_1
+    audioClip: {fileID: 8300000, guid: 176196a1574d8ef46879a790a84a7af1, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: click_2
+    audioClip: {fileID: 8300000, guid: da30de2d2b7fd1f468d9944d3f18017f, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: clapper_big
+    audioClip: {fileID: 8300000, guid: 3bbb945429a559749a65502cd20c5d01, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: clapper_small
+    audioClip: {fileID: 8300000, guid: 8155ec4939869fb4da8b701dca5c0168, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: equip
+    audioClip: {fileID: 8300000, guid: f9b0548cf1f52c442952b245d28af216, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: landing
+    audioClip: {fileID: 8300000, guid: aeb849e8f228ead4fb8b941955706d5f, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: leg_punch
+    audioClip: {fileID: 8300000, guid: c6e932ffb624e684fbb4885b89b51a61, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: shoot_firework
+    audioClip: {fileID: 8300000, guid: 86a0d4e690828464d9a59cfbd3315308, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: smash_door
+    audioClip: {fileID: 8300000, guid: 46caa814d6c0eb247888a3ba4a009ed1, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: smash_window
+    audioClip: {fileID: 8300000, guid: 8eabff8a7faa2624daa97ec69c4e20d6, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: throw
+    audioClip: {fileID: 8300000, guid: fd7a7d57fcf534941b4bf844f005bcf4, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1
+  - name: select
+    audioClip: {fileID: 8300000, guid: bf9f56ad7c22d114996451b0a9494129, type: 3}
+    isLooping: 0
+    isFade: 0
+    volume: 1
+    pitch: 1

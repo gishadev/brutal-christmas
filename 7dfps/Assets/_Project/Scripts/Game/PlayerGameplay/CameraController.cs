@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gisha.fpsjam.Game.InputManager;
+using UnityEngine;
 using Zenject;
 
 namespace Gisha.fpsjam.Game.PlayerGameplay
@@ -7,6 +8,7 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
     {
         [SerializeField] private Transform playerTransform;
         [Inject] private PlayerData _playerData;
+        [Inject] private IInputService _inputService;
 
         private float _desiredX, _xRotation;
         private Rigidbody _playerRb;
@@ -20,6 +22,9 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
 
         void Update()
         {
+            if (!_inputService.IsWorking)
+                return;
+
             transform.position = playerTransform.transform.position + Vector3.up * _yOffset;
             Look();
         }

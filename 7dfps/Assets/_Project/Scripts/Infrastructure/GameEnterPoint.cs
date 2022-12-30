@@ -1,11 +1,16 @@
-﻿using Gisha.fpsjam.Utilities;
+﻿using Gisha.Effects.Audio;
+using Gisha.fpsjam.Utilities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
+using AudioType = Gisha.Effects.Audio.AudioType;
 
 namespace Gisha.fpsjam.Infrastructure
 {
     public class GameEnterPoint : MonoBehaviour
     {
+        [Inject] private IAudioManager _audioManager;
+
         private void Awake()
         {
             Init();
@@ -13,7 +18,9 @@ namespace Gisha.fpsjam.Infrastructure
 
         private async void Init()
         {
-            SceneManager.LoadScene(Constants.GAME_SCENE);
+            _audioManager.InitAmbient();
+            _audioManager.Play("music", AudioType.Music);
+            SceneManager.LoadScene(Constants.MENU_SCENE);
         }
     }
 }

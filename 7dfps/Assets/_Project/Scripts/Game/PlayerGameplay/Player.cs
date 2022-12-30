@@ -15,8 +15,6 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
         private bool _isSliding;
         private Vector3 _normalVector = Vector3.up;
         private bool _cancellingGrounded;
-
-        private Sliding _sliding;
         
         #region Ground Detection
 
@@ -63,6 +61,5 @@ namespace Gisha.fpsjam.Game.PlayerGameplay
         }
 
         #endregion
-
     }
 }

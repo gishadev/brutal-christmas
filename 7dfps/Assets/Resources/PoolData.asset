@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61762076131330a42a114809ff7d371d, type: 3}
+  m_Name: PoolData
+  m_EditorClassIdentifier: 
+  poolObjects:
+  - name: npc_died
+    prefabs:
+    - {fileID: 6387434204198610729, guid: 6ad9805a19361064889adc37b063b098, type: 3}
+    poolObjectType: 1
+  - name: npc_thinking
+    prefabs:
+    - {fileID: 6387434204198610729, guid: 339be802909b52c47af07d69826d8645, type: 3}
+    poolObjectType: 1
+  - name: snowball_impact
+    prefabs:
+    - {fileID: 6387434204198610729, guid: b51cb7c9d63f1a347b50a0bb5ee796b2, type: 3}
+    poolObjectType: 1
+  - name: firework_explosion
+    prefabs:
+    - {fileID: 6387434204198610729, guid: 0676f8b16a574d84c9e70240a2bcd369, type: 3}
+    poolObjectType: 1
+  - name: petard_explosion
+    prefabs:
+    - {fileID: 6387434204198610729, guid: df2c58b0c57d56840ae46c2e8d137144, type: 3}
+    poolObjectType: 1
+  - name: clapper_explosion
+    prefabs:
+    - {fileID: 3538663094648297322, guid: 488d4b56f593a0f44b2b6ff3651cad16, type: 3}
+    poolObjectType: 0
+  - name: petard_explosion
+    prefabs:
+    - {fileID: 3538663094648297322, guid: 796311b6976a79e4e9d2280dde489d37, type: 3}
+    poolObjectType: 0
